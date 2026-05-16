@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <style>
+    .favicon-light { display: block }
+    .favicon-dark { display: none }
+    @media (prefers-color-scheme: dark) {
+      .favicon-light { display: none }
+      .favicon-dark { display: block }
+    }
+  </style>
+  <image class="favicon-light" width="32" height="32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAxUlEQVR4nO2S0QrDIAxF8/8/W60uxohmJGtL2V5WVvFhHghFK+boFWQwMAVkRjAYmAIyIxgMTAG5mVqrVbcImFkSkaSUhIiO0rFWzllCCDbXWrtXoJQiIUbJzNYoZ96KbKz/d4F1XaUw3yuQtpOeOZ9yb46Ih9D7mp8EKH8KKJq5NnwgyrIsJvEtcEVAm8QYBRPaW1BabZY3piTOOZvXNV0EiMg2d/7VaH90Wt57+yrdbqAH0GXXKXABkMHAFJAZwWDg7wWe6Wrrfw/AGngAAAAASUVORK5CYII="/>
+  <image class="favicon-dark" width="32" height="32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAjUlEQVR4nO2VzQqAMAyD09T3f+VINw/qQeahiJBDYH+wr03XAYA+FgwgWwAXIfwM4UYkt2L85TOKCGWmghzju+oMj70WAGYuQm7CGgTWo3+KrDJAzuxEkwV8AKjMTHGcawGImABkXi6pedTaYc8L//USYBbayMRNZ6CatwCgRzCAbAFchPAzhBuRvqqDHfhg/QVMJTnIAAAAAElFTkSuQmCC"/>
+</svg>

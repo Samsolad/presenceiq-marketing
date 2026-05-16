@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PresenceIQ &mdash; Smart attendance, stronger teams</title>
+<meta name="description" content="QR attendance for churches, schools, workplaces and construction sites. Scan. Tap. Done.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --off-black: #111111;
+    --white: #f4f2ed;
+    --dim: rgba(244, 242, 237, 0.5);
+    --dimmer: rgba(244, 242, 237, 0.27);
+    --border: rgba(244, 242, 237, 0.09);
+    --border-dark: rgba(8, 8, 8, 0.12);
+    --green: #4ade80;
+    --green-dim: rgba(74, 222, 128, 0.15);
+    --green-border: rgba(74, 222, 128, 0.3);
+    --max: 72rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 380px) { .container { padding: 0 14px; } }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    margin-bottom: 16px;
+  }
+  .section-dark .eyebrow { color: var(--dimmer); }
+
+  h1, h2, h3 { font-family: "Playfair Display", serif; font-weight: 700; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 1.05; }
+  h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+  h3 { font-size: 1.25rem; }
+
+  .lead {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.125rem, 2vw, 1.35rem);
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(8, 8, 8, 0.72);
+    max-width: 34rem;
+  }
+  .section-dark .lead { color: var(--dim); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-primary { background: var(--black); color: var(--white); border-color: var(--black); }
+  .btn-primary:hover { background: var(--off-black); }
+  .btn-outline { background: transparent; color: var(--black); border-color: var(--border-dark); }
+  .btn-outline:hover { border-color: var(--black); }
+  .btn-light { background: var(--white); color: var(--black); border-color: var(--white); }
+  .btn-light:hover { background: #e8e6e1; }
+  .btn-ghost { background: transparent; color: var(--dim); border-color: var(--border); }
+  .btn-ghost:hover { color: var(--white); border-color: var(--dimmer); }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border-dark);
+    transition: box-shadow 0.25s;
+  }
+  nav.scrolled { box-shadow: 0 8px 32px rgba(8, 8, 8, 0.06); }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .logo img { height: 36px; width: auto; display: block; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+  .nav-ctas { display: flex; align-items: center; gap: 10px; }
+  .nav-ctas .btn { padding: 10px 18px; }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--black);
+  }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: var(--white);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .mobile-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--black);
+  }
+
+  /* HERO */
+  .hero {
+    padding: 140px 0 100px;
+    background: var(--white);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-logo { margin-bottom: 32px; }
+  .hero-logo img { height: clamp(72px, 12vw, 120px); width: auto; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .hero-meta {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-dark);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.45);
+  }
+
+  /* PHONE MOCK */
+  .hero-visual { display: flex; justify-content: center; }
+  .phone-panel {
+    width: 100%;
+    max-width: 320px;
+    border: 1px solid var(--border-dark);
+    background: var(--black);
+    padding: 24px;
+  }
+  .phone-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    margin-bottom: 16px;
+  }
+  .phone-session {
+    border: 1px solid var(--border);
+    background: rgba(244, 242, 237, 0.03);
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--green-border);
+    background: var(--green-dim);
+    padding: 4px 10px;
+    margin-bottom: 10px;
+  }
+  .badge-live::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .phone-session h4 {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .phone-session p { font-size: 12px; color: var(--dim); }
+  .qr-box {
+    background: var(--white);
+    padding: 16px;
+    margin-bottom: 16px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    width: 100%;
+    max-width: 130px;
+  }
+  .qr-cell { aspect-ratio: 1; }
+  .qr-cell.on { background: var(--black); }
+  .phone-cta {
+    text-align: center;
+    padding: 14px;
+    background: var(--white);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section { padding: 96px 0; }
+  .section-header { margin-bottom: 56px; max-width: 40rem; }
+  .section-header.center { text-align: center; margin-left: auto; margin-right: auto; }
+  .section-dark {
+    background: var(--black);
+    color: var(--white);
+  }
+  .section-muted { background: #ebe9e4; }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border-dark);
+    border: 1px solid var(--border-dark);
+  }
+  .stat {
+    background: var(--white);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.45);
+  }
+
+  /* FEATURES &mdash; app-style numbered grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border-dark);
+    border: 1px solid var(--border-dark);
+  }
+  .feature-card {
+    background: var(--white);
+    padding: 32px 28px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .feature-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--black);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .feature-card:hover { background: #ebe9e4; }
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: rgba(8, 8, 8, 0.12);
+    margin-bottom: 16px;
+  }
+  .feature-card h3 { margin-bottom: 10px; }
+  .feature-card p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(8, 8, 8, 0.65);
+    line-height: 1.6;
+  }
+
+  /* STEPS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .step-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 16px;
+    color: var(--white);
+    opacity: 0.25;
+  }
+  .section-dark .step h3 { color: var(--white); margin-bottom: 10px; }
+  .section-dark .step p { color: var(--dim); font-size: 15px; }
+
+  /* WHO */
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .who-card {
+    background: var(--off-black);
+    padding: 28px;
+    border: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .who-card:hover { background: #1a1a1a; }
+  .who-card h3 { color: var(--white); margin-bottom: 8px; }
+  .who-card p { color: var(--dim); font-size: 14px; margin-bottom: 14px; }
+  .who-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .who-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+  }
+
+  /* CONSTRUCTION */
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .points { display: flex; flex-direction: column; gap: 20px; margin: 32px 0; }
+  .point {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-dark);
+  }
+  .point:last-child { border-bottom: none; padding-bottom: 0; }
+  .point strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .point p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(8, 8, 8, 0.65);
+  }
+  .log-panel {
+    border: 1px solid var(--border-dark);
+    padding: 24px;
+    background: var(--white);
+  }
+  .log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .log-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-dark);
+    font-size: 14px;
+  }
+  .log-row:last-child { border-bottom: none; }
+  .log-avatar {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .log-name { flex: 1; font-weight: 500; }
+  .log-time { font-size: 12px; color: rgba(8, 8, 8, 0.45); }
+  .status {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid;
+  }
+  .status-in { color: var(--green); border-color: var(--green-border); background: var(--green-dim); }
+  .status-out { color: rgba(8, 8, 8, 0.55); border-color: var(--border-dark); }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border-dark);
+    border: 1px solid var(--border-dark);
+  }
+  .price-card {
+    background: var(--white);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .price-card.featured {
+    background: var(--black);
+    color: var(--white);
+  }
+  .price-tier {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(8, 8, 8, 0.4);
+    margin-bottom: 8px;
+  }
+  .price-card.featured .price-tier { color: var(--dimmer); }
+  .price-name { font-family: "Playfair Display", serif; font-size: 1.5rem; margin-bottom: 16px; }
+  .price-amount {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .price-desc {
+    font-size: 13px;
+    color: rgba(8, 8, 8, 0.55);
+    margin-bottom: 20px;
+    flex-grow: 0;
+  }
+  .price-card.featured .price-desc { color: var(--dim); }
+  .price-features {
+    list-style: none;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+  .price-features li {
+    font-size: 13px;
+    padding: 6px 0;
+    padding-left: 18px;
+    position: relative;
+    color: rgba(8, 8, 8, 0.72);
+  }
+  .price-card.featured .price-features li { color: var(--dim); }
+  .price-features li::before {
+    content: "&mdash;";
+    position: absolute;
+    left: 0;
+    color: var(--green);
+  }
+  .price-features li.muted { color: rgba(8, 8, 8, 0.35); }
+  .price-card.featured .price-features li.muted { color: var(--dimmer); }
+  .price-features li.muted::before { color: var(--dimmer); }
+  .popular {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--green-border);
+    background: var(--green-dim);
+    padding: 4px 10px;
+    margin-bottom: 12px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .testimonial {
+    background: var(--off-black);
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+  .testimonial p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dim);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .testimonial-author { font-size: 13px; }
+  .testimonial-author strong { display: block; color: var(--white); font-weight: 500; }
+  .testimonial-author span { color: var(--dimmer); font-size: 12px; }
+
+  /* FAQ */
+  .faq-list { max-width: 40rem; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border-dark); }
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+  }
+  .faq-chevron {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    transition: transform 0.3s;
+    color: rgba(8, 8, 8, 0.4);
+  }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(8, 8, 8, 0.65);
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-answer { max-height: 280px; padding-bottom: 22px; }
+
+  /* CTA */
+  .cta { text-align: center; padding: 100px 0; }
+  .cta h2 { margin-bottom: 16px; }
+  .cta .lead { margin: 0 auto 36px; }
+  .cta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dimmer);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 64px 0 0;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand img { height: 48px; width: auto; margin-bottom: 16px; }
+  .footer-brand p { font-size: 14px; color: var(--dim); max-width: 280px; line-height: 1.7; }
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; }
+  .footer-links a {
+    display: block;
+    font-size: 13px;
+    color: var(--dim);
+    text-decoration: none;
+    padding: 6px 0;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--dimmer);
+  }
+  .footer-legal { display: flex; gap: 20px; }
+  .footer-legal a { color: var(--dimmer); text-decoration: none; }
+  .footer-legal a:hover { color: var(--white); }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 1024px) {
+    .hero-grid, .split-grid { grid-template-columns: 1fr; gap: 48px; }
+    .features-grid, .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero-visual { order: -1; }
+    .nav-links, .nav-ctas { display: none; }
+    .hamburger { display: flex; }
+    .features-grid, .pricing-grid, .testimonials-grid, .who-grid, .steps {
+      grid-template-columns: 1fr;
+    }
+    .footer-grid { grid-template-columns: 1fr; }
+    section { padding: 72px 0; }
+  }
+
+  /* COOKIE */
+  #cookieBanner {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  #cookieBanner.visible { transform: translateY(0); }
+  .cookie-inner {
+    max-width: var(--max); margin: 0 auto;
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .cookie-text { flex: 1; min-width: 240px; }
+  .cookie-text strong { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; color: var(--white); }
+  .cookie-text p { font-size: 13px; color: var(--dim); }
+  .cookie-text a { color: var(--white); }
+  .cookie-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="closeMobileNav()">Close</button>
+  <a href="#features" onclick="closeMobileNav()">Features</a>
+  <a href="#how" onclick="closeMobileNav()">How it works</a>
+  <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="https://app.presenceiq.app/login" class="btn btn-outline">Admin login</a>
+  <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo" aria-label="PresenceIQ home">
+      <img src="brand/logo-black.png" alt="PresenceIQ" style="height:36px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#who">Who it's for</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="https://app.presenceiq.app/login" class="btn btn-outline">Admin login</a>
+      <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
+    </div>
+    <button class="hamburger" onclick="openMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-logo">
+          <img src="brand/logo-black.png" alt="PresenceIQ &mdash; Smart attendance, stronger teams">
+        </div>
+        <p class="eyebrow">Attendance, reimagined</p>
+        <h1>Scan. Tap. Done.</h1>
+        <p class="lead">Zero hardware. Two-second check-in. Clear records. Built for churches, schools, workplaces, and construction sites &mdash; the same calm experience as the PresenceIQ app.</p>
+        <div class="hero-ctas">
+          <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started free</a>
+          <a href="#how" class="btn btn-outline">See how it works</a>
+        </div>
+        <p class="hero-meta">No app download &middot; No credit card &middot; UK-hosted & GDPR-ready</p>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-panel">
+          <p class="phone-label">Member check-in</p>
+          <div class="phone-session">
+            <span class="badge-live">Live session</span>
+            <h4>Sunday Morning Service</h4>
+            <p>Sun 6 Apr &middot; 10:00 AM</p>
+          </div>
+          <div class="qr-box"><div class="qr-grid" id="qrPattern"></div></div>
+          <div class="phone-cta">Mark attendance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-muted" style="padding: 64px 0;">
+  <div class="container">
+    <div class="stats-grid fade-up">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Organisations</div></div>
+      <div class="stat"><div class="stat-num">2s</div><div class="stat-label">Average check-in</div></div>
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Admin time saved</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Hardware required</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="eyebrow">Product</p>
+      <h2>Everything you need</h2>
+      <p class="lead">The same focused toolkit you see in the app &mdash; built for admins who want calm control, and members who want zero friction.</p>
+    </div>
+    <div class="features-grid">
+      <article class="feature-card fade-up"><p class="feature-num">01</p><h3>Zero hardware</h3><p>Attendees scan with any phone camera. No scanners, no kiosks.</p></article>
+      <article class="feature-card fade-up"><p class="feature-num">02</p><h3>Two second check-in</h3><p>Scan the QR, tap once. No login wall on the door.</p></article>
+      <article class="feature-card fade-up"><p class="feature-num">03</p><h3>Clear records</h3><p>Sessions, departments, and attendance in one calm dashboard.</p></article>
+      <article class="feature-card fade-up"><p class="feature-num">04</p><h3>Session windows</h3><p>QR opens and closes on your schedule, then archives on its own.</p></article>
+      <article class="feature-card fade-up"><p class="feature-num">05</p><h3>Built for teams</h3><p>Workplace mode and member flows stay separate and private.</p></article>
+      <article class="feature-card fade-up"><p class="feature-num">06</p><h3>Follow up</h3><p>Message templates for thanks and gentle nudges after sessions.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section-dark">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps. Seconds flat.</h2>
+      <p class="lead">From setup to your first attendance report &mdash; no technical knowledge required.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-up"><p class="step-num">01</p><h3>Create your session</h3><p>Set your programme, schedule, and QR window. Recurring weekly sessions included.</p></div>
+      <div class="step fade-up"><p class="step-num">02</p><h3>Members scan & tap</h3><p>Personal links by email. Return visitors get one-tap check-in via device recognition.</p></div>
+      <div class="step fade-up"><p class="step-num">03</p><h3>Reports & follow-ups</h3><p>Thank-you emails to attendees. Caring messages to absentees &mdash; automated and customisable.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="who" class="section-dark" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="eyebrow">Who it's for</p>
+      <h2>Built for organisations that show up</h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-card fade-up"><h3>Churches & faith groups</h3><p>Track services and midweek groups. Automated pastoral follow-ups.</p><div class="who-tags"><span class="who-tag">Services</span><span class="who-tag">Youth</span></div></div>
+      <div class="who-card fade-up"><h3>Schools & education</h3><p>Replace paper registers. Clubs, classes, and events in one system.</p><div class="who-tags"><span class="who-tag">Clubs</span><span class="who-tag">Classes</span></div></div>
+      <div class="who-card fade-up"><h3>Workplaces & SMEs</h3><p>Check in and out at the door. Clean timesheets, no app install.</p><div class="who-tags"><span class="who-tag">Check-in/out</span><span class="who-tag">Timesheets</span></div></div>
+      <div class="who-card fade-up"><h3>Construction sites</h3><p>Timestamped gate logs for UK H&S compliance. No hardware on site.</p><div class="who-tags"><span class="who-tag">Site logs</span><span class="who-tag">H&S</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="split-grid">
+      <div class="fade-up">
+        <p class="eyebrow">Construction compliance</p>
+        <h2>Built for construction sites too</h2>
+        <p class="lead">UK health and safety law requires attendance logs on every site. One scan at the gate &mdash; logged, timestamped, compliant.</p>
+        <div class="points">
+          <div class="point"><div><strong>Gate check-in & out</strong><p>Workers scan on arrival and departure for a complete on-site record.</p></div></div>
+          <div class="point"><div><strong>H&S compliant logs</strong><p>Exportable records ready for HSE &mdash; CDM obligations covered.</p></div></div>
+          <div class="point"><div><strong>No infrastructure</strong><p>A printed QR at the gate is all you need. Workers use their own phones.</p></div></div>
+        </div>
+        <a href="https://app.presenceiq.app/register" class="btn btn-primary">Set up your site</a>
+      </div>
+      <div class="log-panel fade-up">
+        <div class="log-header"><span>Site log &mdash; today</span><span class="badge-live">Live</span></div>
+        <div class="log-row"><div class="log-avatar">JO</div><span class="log-name">James Okafor</span><span class="log-time">07:42</span><span class="status status-in">In</span></div>
+        <div class="log-row"><div class="log-avatar">SM</div><span class="log-name">Sarah Mensah</span><span class="log-time">07:51</span><span class="status status-in">In</span></div>
+        <div class="log-row"><div class="log-avatar">DP</div><span class="log-name">David Parrish</span><span class="log-time">08:04</span><span class="status status-in">In</span></div>
+        <div class="log-row"><div class="log-avatar">AN</div><span class="log-name">Amara Nwosu</span><span class="log-time">12:30</span><span class="status status-out">Out</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="pricing">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <p class="eyebrow">Pricing</p>
+      <h2>Free to start. Simple to scale.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto;">No contracts. Upgrade, downgrade, or cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card fade-up">
+        <p class="price-tier">Free</p>
+        <p class="price-name">Free</p>
+        <p class="price-amount">&pound;0</p>
+        <p class="price-desc">For small groups getting started.</p>
+        <ul class="price-features">
+          <li>1 organisation</li>
+          <li>Up to 50 members</li>
+          <li>QR attendance</li>
+          <li>Email follow-ups</li>
+          <li class="muted">Analytics dashboard</li>
+        </ul>
+        <a href="https://app.presenceiq.app/register" class="btn btn-outline" style="width:100%">Get started</a>
+      </div>
+      <div class="price-card fade-up">
+        <p class="price-tier">Starter</p>
+        <p class="price-name">Starter</p>
+        <p class="price-amount">&pound;9</p>
+        <p class="price-desc">Analytics, exports, and templates.</p>
+        <ul class="price-features">
+          <li>Up to 150 members</li>
+          <li>Analytics dashboard</li>
+          <li>Custom email templates</li>
+          <li>CSV export</li>
+        </ul>
+        <a href="https://app.presenceiq.app/register" class="btn btn-outline" style="width:100%">Start for &pound;9/mo</a>
+      </div>
+      <div class="price-card featured fade-up">
+        <span class="popular">Most popular</span>
+        <p class="price-tier">Growth</p>
+        <p class="price-name">Growth</p>
+        <p class="price-amount">&pound;29</p>
+        <p class="price-desc">The complete solution for active organisations.</p>
+        <ul class="price-features">
+          <li>Up to 500 members</li>
+          <li>SMS notifications</li>
+          <li>SME check-in / check-out</li>
+          <li>Recurring sessions</li>
+        </ul>
+        <a href="https://app.presenceiq.app/register" class="btn btn-light" style="width:100%">Start growth plan</a>
+      </div>
+      <div class="price-card fade-up">
+        <p class="price-tier">Pro</p>
+        <p class="price-name">Pro</p>
+        <p class="price-amount">&pound;79</p>
+        <p class="price-desc">Unlimited scale and white-label branding.</p>
+        <ul class="price-features">
+          <li>Unlimited members</li>
+          <li>White-label branding</li>
+          <li>Custom domain</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://app.presenceiq.app/register" class="btn btn-outline" style="width:100%">Contact sales</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:12px;color:rgba(8,8,8,0.45);">14-day trial on paid plans. No credit card required on Free.</p>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <p class="eyebrow">Testimonials</p>
+      <h2>Loved across the UK</h2>
+    </div>
+    <div class="testimonials-grid">
+      <blockquote class="testimonial fade-up"><p>&ldquo;Check-in is done before the sermon ends. Follow-up emails have strengthened our pastoral care.&rdquo;</p><footer class="testimonial-author"><strong>Pastor Oluwaseun Adeyemi</strong><span>Restoration Chapel, Birmingham</span></footer></blockquote>
+      <blockquote class="testimonial fade-up"><p>&ldquo;Older members tap the same link every week. No scanning, no passwords.&rdquo;</p><footer class="testimonial-author"><strong>Rachel Hughes</strong><span>Northfield Academy, Sheffield</span></footer></blockquote>
+      <blockquote class="testimonial fade-up"><p>&ldquo;Exportable reports helped us secure two new grants.&rdquo;</p><footer class="testimonial-author"><strong>Grace Nwachukwu</strong><span>Arise Community Trust, London</span></footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <p class="eyebrow">FAQ</p>
+      <h2>Your questions, answered</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members use a permanent personal link by email. Return visitors can check in with one tap via device recognition.</div></div>
+      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How does construction site check-in work?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Workers scan at the gate on arrival and departure. You get timestamped, exportable logs for UK H&amp;S compliance.</div></div>
+      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. UK-hosted data, encryption in transit and at rest, and strict tenant isolation with row-level security.</div></div>
+      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Can I try before paying?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">The Free plan is free forever. Paid plans include a 14-day trial with no lock-in.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark cta">
+  <div class="container fade-up">
+    <p class="eyebrow">Ready?</p>
+    <h2>Join organisations already using PresenceIQ</h2>
+    <p class="lead">Set up your first session in under ten minutes.</p>
+    <div class="hero-ctas" style="justify-content:center;">
+      <a href="https://app.presenceiq.app/register" class="btn btn-light">Get started free</a>
+      <a href="https://app.presenceiq.app/login" class="btn btn-ghost">Admin login</a>
+    </div>
+    <div class="cta-badges">
+      <span>Free plan available</span>
+      <span>No credit card</span>
+      <span>Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="brand/logo-cream.png" alt="PresenceIQ">
+        <p>Smart attendance for churches, schools, workplaces, and construction sites.</p>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="mailto:hello@presenceiq.app">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>App</h4><ul class="footer-links"><li><a href="https://app.presenceiq.app/register">Register</a></li><li><a href="https://app.presenceiq.app/login">Admin login</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 PresenceIQ. All rights reserved.</span>
+      <div class="footer-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="cookieBanner" role="dialog" aria-label="Cookie consent">
+  <div class="cookie-inner">
+    <div class="cookie-text"><strong>We use cookies</strong><p>Essential cookies keep the site working. <a href="/cookies">Cookie policy</a></p></div>
+    <div class="cookie-actions">
+      <button class="btn btn-ghost" type="button" onclick="rejectCookies()">Reject</button>
+      <button class="btn btn-light" type="button" onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const qr = document.getElementById('qrPattern');
+if (qr) {
+  const p = [1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,1,0,1,0,1,1,0,0,1,0,0,1,1,0,1,0,1,0,1,1,0,0,0,0,0,1,1,1,1,1,1,1];
+  qr.innerHTML = p.map(b => '<div class="qr-cell ' + (b ? 'on' : '') + '"></div>').join('');
+}
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow = ''; }
+function acceptCookies() { localStorage.setItem('pqi_cookies', '1'); document.getElementById('cookieBanner').classList.remove('visible'); }
+function rejectCookies() { localStorage.setItem('pqi_cookies', '0'); document.getElementById('cookieBanner').classList.remove('visible'); }
+window.addEventListener('DOMContentLoaded', () => { if (!localStorage.getItem('pqi_cookies')) setTimeout(() => document.getElementById('cookieBanner').classList.add('visible'), 600); });
+</script>
+</body>
+</html>
