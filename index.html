@@ -28,11 +28,15 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: "DM Sans", sans-serif;
-    background: var(--white);
-    color: var(--black);
+    background: var(--black);
+    color: var(--white);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
+
+  h1, h2, h3 { color: var(--white); }
+  .eyebrow { color: var(--dimmer); }
+  .lead { color: var(--dim); }
 
   .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
   @media (max-width: 380px) { .container { padding: 0 14px; } }
@@ -58,10 +62,8 @@
     font-size: clamp(1.125rem, 2vw, 1.35rem);
     font-weight: 300;
     line-height: 1.65;
-    color: rgba(8, 8, 8, 0.72);
     max-width: 34rem;
   }
-  .section-dark .lead { color: var(--dim); }
 
   .btn {
     display: inline-flex;
@@ -79,10 +81,10 @@
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
-  .btn-primary { background: var(--black); color: var(--white); border-color: var(--black); }
-  .btn-primary:hover { background: var(--off-black); }
-  .btn-outline { background: transparent; color: var(--black); border-color: var(--border-dark); }
-  .btn-outline:hover { border-color: var(--black); }
+  .btn-primary { background: var(--white); color: var(--black); border-color: var(--white); }
+  .btn-primary:hover { background: #e8e6e1; border-color: #e8e6e1; }
+  .btn-outline { background: transparent; color: var(--white); border-color: var(--border); }
+  .btn-outline:hover { border-color: var(--dimmer); color: var(--white); }
   .btn-light { background: var(--white); color: var(--black); border-color: var(--white); }
   .btn-light:hover { background: #e8e6e1; }
   .btn-ghost { background: transparent; color: var(--dim); border-color: var(--border); }
@@ -95,11 +97,12 @@
     left: 0;
     right: 0;
     z-index: 100;
-    background: var(--white);
-    border-bottom: 1px solid var(--border-dark);
-    transition: box-shadow 0.25s;
+    background: rgba(8, 8, 8, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.25s, background 0.25s;
   }
-  nav.scrolled { box-shadow: 0 8px 32px rgba(8, 8, 8, 0.06); }
+  nav.scrolled { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); background: var(--black); }
   .nav-inner {
     display: flex;
     align-items: center;
@@ -114,7 +117,7 @@
     align-items: center;
     text-decoration: none;
   }
-  .logo img { height: 36px; width: auto; display: block; }
+  .logo img { height: 40px; width: auto; display: block; max-width: min(220px, 52vw); }
   .nav-links {
     display: flex;
     align-items: center;
@@ -126,11 +129,11 @@
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(8, 8, 8, 0.55);
+    color: var(--dim);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--black); }
+  .nav-links a:hover { color: var(--white); }
   .nav-ctas { display: flex; align-items: center; gap: 10px; }
   .nav-ctas .btn { padding: 10px 18px; }
   .hamburger {
@@ -146,7 +149,7 @@
     display: block;
     width: 22px;
     height: 1px;
-    background: var(--black);
+    background: var(--white);
   }
 
   .mobile-nav {
@@ -154,7 +157,7 @@
     position: fixed;
     inset: 0;
     z-index: 99;
-    background: var(--white);
+    background: var(--black);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -164,7 +167,7 @@
   .mobile-nav a {
     font-family: "Playfair Display", serif;
     font-size: 1.5rem;
-    color: var(--black);
+    color: var(--white);
     text-decoration: none;
   }
   .mobile-close {
@@ -177,13 +180,13 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     cursor: pointer;
-    color: var(--black);
+    color: var(--white);
   }
 
   /* HERO */
   .hero {
     padding: 140px 0 100px;
-    background: var(--white);
+    background: var(--black);
   }
   .hero-grid {
     display: grid;
@@ -192,16 +195,16 @@
     align-items: center;
   }
   .hero-logo { margin-bottom: 32px; }
-  .hero-logo img { height: clamp(72px, 12vw, 120px); width: auto; }
+  .hero-logo img { height: clamp(88px, 16vw, 148px); width: auto; max-width: 100%; }
   .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
   .hero-meta {
     margin-top: 48px;
     padding-top: 24px;
-    border-top: 1px solid var(--border-dark);
+    border-top: 1px solid var(--border);
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(8, 8, 8, 0.45);
+    color: var(--dimmer);
   }
 
   /* PHONE MOCK */
@@ -293,18 +296,18 @@
     background: var(--black);
     color: var(--white);
   }
-  .section-muted { background: #ebe9e4; }
+  .section-muted { background: var(--off-black); }
 
   /* STATS */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
-    background: var(--border-dark);
-    border: 1px solid var(--border-dark);
+    background: var(--border);
+    border: 1px solid var(--border);
   }
   .stat {
-    background: var(--white);
+    background: var(--off-black);
     padding: 32px 24px;
     text-align: center;
   }
@@ -313,12 +316,13 @@
     font-size: 3rem;
     line-height: 1;
     margin-bottom: 8px;
+    color: var(--white);
   }
   .stat-label {
     font-size: 10px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(8, 8, 8, 0.45);
+    color: var(--dimmer);
   }
 
   /* FEATURES &mdash; app-style numbered grid */
@@ -326,11 +330,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2px;
-    background: var(--border-dark);
-    border: 1px solid var(--border-dark);
+    background: var(--border);
+    border: 1px solid var(--border);
   }
   .feature-card {
-    background: var(--white);
+    background: var(--off-black);
     padding: 32px 28px;
     position: relative;
     transition: background 0.3s;
@@ -342,26 +346,26 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--black);
+    background: var(--green);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.35s;
   }
-  .feature-card:hover { background: #ebe9e4; }
+  .feature-card:hover { background: #1a1a1a; }
   .feature-card:hover::before { transform: scaleX(1); }
   .feature-num {
     font-family: "Bebas Neue", sans-serif;
     font-size: 2.5rem;
     line-height: 1;
-    color: rgba(8, 8, 8, 0.12);
+    color: rgba(244, 242, 237, 0.1);
     margin-bottom: 16px;
   }
-  .feature-card h3 { margin-bottom: 10px; }
+  .feature-card h3 { margin-bottom: 10px; color: var(--white); }
   .feature-card p {
     font-family: "Cormorant Garamond", serif;
     font-size: 1.05rem;
     font-weight: 300;
-    color: rgba(8, 8, 8, 0.65);
+    color: var(--dim);
     line-height: 1.6;
   }
 
@@ -421,7 +425,7 @@
     display: flex;
     gap: 16px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border);
   }
   .point:last-child { border-bottom: none; padding-bottom: 0; }
   .point strong {
@@ -435,12 +439,13 @@
     font-family: "Cormorant Garamond", serif;
     font-size: 1.05rem;
     font-weight: 300;
-    color: rgba(8, 8, 8, 0.65);
+    color: var(--dim);
   }
+  .point strong { color: var(--white); }
   .log-panel {
-    border: 1px solid var(--border-dark);
+    border: 1px solid var(--border);
     padding: 24px;
-    background: var(--white);
+    background: var(--off-black);
   }
   .log-header {
     display: flex;
@@ -456,22 +461,25 @@
     align-items: center;
     gap: 12px;
     padding: 12px 0;
-    border-bottom: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border);
     font-size: 14px;
+    color: var(--white);
   }
   .log-row:last-child { border-bottom: none; }
   .log-avatar {
     width: 32px;
     height: 32px;
-    border: 1px solid var(--border-dark);
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
     font-weight: 500;
+    color: var(--dim);
   }
   .log-name { flex: 1; font-weight: 500; }
-  .log-time { font-size: 12px; color: rgba(8, 8, 8, 0.45); }
+  .log-time { font-size: 12px; color: var(--dimmer); }
+  .log-header { color: var(--dim); }
   .status {
     font-size: 10px;
     letter-spacing: 0.2em;
@@ -480,35 +488,37 @@
     border: 1px solid;
   }
   .status-in { color: var(--green); border-color: var(--green-border); background: var(--green-dim); }
-  .status-out { color: rgba(8, 8, 8, 0.55); border-color: var(--border-dark); }
+  .status-out { color: var(--dim); border-color: var(--border); }
 
   /* PRICING */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
-    background: var(--border-dark);
-    border: 1px solid var(--border-dark);
+    background: var(--border);
+    border: 1px solid var(--border);
   }
   .price-card {
-    background: var(--white);
+    background: var(--off-black);
+    color: var(--white);
     padding: 28px 24px;
     display: flex;
     flex-direction: column;
   }
   .price-card.featured {
-    background: var(--black);
-    color: var(--white);
+    background: #1a1a1a;
+    border: 1px solid var(--green-border);
+    box-shadow: 0 0 0 1px var(--green-dim);
   }
   .price-tier {
     font-size: 10px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(8, 8, 8, 0.4);
+    color: var(--dimmer);
     margin-bottom: 8px;
   }
-  .price-card.featured .price-tier { color: var(--dimmer); }
-  .price-name { font-family: "Playfair Display", serif; font-size: 1.5rem; margin-bottom: 16px; }
+  .price-card.featured .price-tier { color: var(--green); }
+  .price-name { font-family: "Playfair Display", serif; font-size: 1.5rem; margin-bottom: 16px; color: var(--white); }
   .price-amount {
     font-family: "Bebas Neue", sans-serif;
     font-size: 3rem;
@@ -517,7 +527,7 @@
   }
   .price-desc {
     font-size: 13px;
-    color: rgba(8, 8, 8, 0.55);
+    color: var(--dim);
     margin-bottom: 20px;
     flex-grow: 0;
   }
@@ -532,16 +542,16 @@
     padding: 6px 0;
     padding-left: 18px;
     position: relative;
-    color: rgba(8, 8, 8, 0.72);
+    color: var(--dim);
   }
   .price-card.featured .price-features li { color: var(--dim); }
   .price-features li::before {
-    content: "&mdash;";
+    content: "\2014";
     position: absolute;
     left: 0;
     color: var(--green);
   }
-  .price-features li.muted { color: rgba(8, 8, 8, 0.35); }
+  .price-features li.muted { color: var(--dimmer); }
   .price-card.featured .price-features li.muted { color: var(--dimmer); }
   .price-features li.muted::before { color: var(--dimmer); }
   .popular {
@@ -585,7 +595,7 @@
 
   /* FAQ */
   .faq-list { max-width: 40rem; margin: 0 auto; }
-  .faq-item { border-bottom: 1px solid var(--border-dark); }
+  .faq-item { border-bottom: 1px solid var(--border); }
   .faq-question {
     width: 100%;
     display: flex;
@@ -600,13 +610,13 @@
     font-family: "DM Sans", sans-serif;
     font-size: 14px;
     font-weight: 500;
-    color: var(--black);
+    color: var(--white);
   }
   .faq-chevron {
     font-size: 10px;
     letter-spacing: 0.1em;
     transition: transform 0.3s;
-    color: rgba(8, 8, 8, 0.4);
+    color: var(--dimmer);
   }
   .faq-item.open .faq-chevron { transform: rotate(180deg); }
   .faq-answer {
@@ -616,7 +626,7 @@
     font-family: "Cormorant Garamond", serif;
     font-size: 1.05rem;
     font-weight: 300;
-    color: rgba(8, 8, 8, 0.65);
+    color: var(--dim);
     line-height: 1.7;
   }
   .faq-item.open .faq-answer { max-height: 280px; padding-bottom: 22px; }
@@ -650,7 +660,7 @@
     gap: 48px;
     margin-bottom: 48px;
   }
-  .footer-brand img { height: 48px; width: auto; margin-bottom: 16px; }
+  .footer-brand img { height: 52px; width: auto; max-width: 220px; margin-bottom: 16px; display: block; }
   .footer-brand p { font-size: 14px; color: var(--dim); max-width: 280px; line-height: 1.7; }
   .footer-col h4 {
     font-size: 10px;
@@ -743,7 +753,7 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="/" class="logo" aria-label="PresenceIQ home">
-      <img src="brand/logo-black.png" alt="PresenceIQ" style="height:36px;width:auto;">
+      <img src="brand/logo-cream.png" alt="PresenceIQ" width="200" height="60">
     </a>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
@@ -765,7 +775,7 @@
     <div class="hero-grid">
       <div>
         <div class="hero-logo">
-          <img src="brand/logo-black.png" alt="PresenceIQ &mdash; Smart attendance, stronger teams">
+          <img src="brand/logo-cream.png" alt="PresenceIQ &mdash; Smart attendance, stronger teams" width="360" height="108">
         </div>
         <p class="eyebrow">Attendance, reimagined</p>
         <h1>Scan. Tap. Done.</h1>
@@ -792,7 +802,7 @@
   </div>
 </section>
 
-<section class="section-muted" style="padding: 64px 0;">
+<section class="section-dark section-muted" style="padding: 64px 0;">
   <div class="container">
     <div class="stats-grid fade-up">
       <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Organisations</div></div>
@@ -803,7 +813,7 @@
   </div>
 </section>
 
-<section id="features">
+<section id="features" class="section-dark">
   <div class="container">
     <div class="section-header fade-up">
       <p class="eyebrow">Product</p>
@@ -851,7 +861,7 @@
   </div>
 </section>
 
-<section>
+<section class="section-dark">
   <div class="container">
     <div class="split-grid">
       <div class="fade-up">
@@ -875,7 +885,7 @@
     </div>
   </div>
 </section>
-<section id="pricing">
+<section id="pricing" class="section-dark">
   <div class="container">
     <div class="section-header center fade-up">
       <p class="eyebrow">Pricing</p>
@@ -938,7 +948,7 @@
         <a href="https://app.presenceiq.app/register" class="btn btn-outline" style="width:100%">Contact sales</a>
       </div>
     </div>
-    <p style="text-align:center;margin-top:28px;font-size:12px;color:rgba(8,8,8,0.45);">14-day trial on paid plans. No credit card required on Free.</p>
+    <p style="text-align:center;margin-top:28px;font-size:12px;color:var(--dimmer);">14-day trial on paid plans. No credit card required on Free.</p>
   </div>
 </section>
 
@@ -956,7 +966,7 @@
   </div>
 </section>
 
-<section id="faq">
+<section id="faq" class="section-dark">
   <div class="container">
     <div class="section-header center fade-up">
       <p class="eyebrow">FAQ</p>
@@ -992,7 +1002,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="brand/logo-cream.png" alt="PresenceIQ">
+        <img src="brand/logo-cream.png" alt="PresenceIQ" width="200" height="60">
         <p>Smart attendance for churches, schools, workplaces, and construction sites.</p>
       </div>
       <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
