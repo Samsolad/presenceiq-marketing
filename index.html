@@ -10,1027 +10,1087 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#080808">
+<meta name="theme-color" content="#0F172A">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="PresenceIQ">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/geist-sans@5.1.0/index.css">
 <style>
   :root {
-    --black: #080808;
-    --off-black: #111111;
-    --white: #f4f2ed;
-    --dim: rgba(244, 242, 237, 0.5);
-    --dimmer: rgba(244, 242, 237, 0.27);
-    --border: rgba(244, 242, 237, 0.09);
-    --border-dark: rgba(8, 8, 8, 0.12);
-    --green: #4ade80;
-    --green-dim: rgba(74, 222, 128, 0.15);
-    --green-border: rgba(74, 222, 128, 0.3);
-    --max: 72rem;
+    --color-primary: #4F46E5;
+    --color-primary-light: #6366F1;
+    --color-secondary: #A855F7;
+    --color-accent: #06B6D4;
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #EF4444;
+
+    --color-bg: #0F172A;
+    --color-surface: #1E293B;
+    --color-surface-raised: #243044;
+    --color-border: #334155;
+    --color-text-primary: #F1F5F9;
+    --color-text-secondary: #94A3B8;
+
+    --font-display: "Geist Sans", "Geist", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    --sidebar-width: 260px;
+    --header-height: 64px;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --gradient-badge: linear-gradient(135deg, rgba(79, 70, 229, 0.14), rgba(168, 85, 247, 0.14));
+    --glass-bg: rgba(15, 23, 42, 0.72);
+    --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px rgba(0, 0, 0, 0.25);
+    --shadow-lift: 0 12px 32px rgba(0, 0, 0, 0.35);
+    --max-content: 1120px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: "DM Sans", sans-serif;
-    background: var(--black);
-    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
     line-height: 1.6;
+    background: var(--color-bg);
+    color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3 { color: var(--white); }
-  .eyebrow { color: var(--dimmer); }
-  .lead { color: var(--dim); }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+  h1 { font-size: clamp(1.875rem, 4vw, 2rem); letter-spacing: -0.5px; line-height: 1.15; }
+  h2 { font-size: clamp(1.375rem, 3vw, 1.5rem); font-weight: 600; letter-spacing: -0.25px; line-height: 1.2; }
+  h3 { font-size: 1.125rem; font-weight: 600; font-family: var(--font-body); letter-spacing: 0; }
 
-  .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-  @media (max-width: 380px) { .container { padding: 0 14px; } }
-
-  .eyebrow {
-    display: inline-block;
-    font-size: 10px;
+  .label {
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.4em;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: var(--dimmer);
-    margin-bottom: 16px;
+    color: var(--color-text-secondary);
   }
-  .section-dark .eyebrow { color: var(--dimmer); }
-
-  h1, h2, h3 { font-family: "Playfair Display", serif; font-weight: 700; letter-spacing: -0.02em; }
-  h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 1.05; }
-  h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
-  h3 { font-size: 1.25rem; }
-
   .lead {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(1.125rem, 2vw, 1.35rem);
-    font-weight: 300;
+    font-size: 15px;
     line-height: 1.65;
-    max-width: 34rem;
+    color: var(--color-text-secondary);
+    max-width: 36rem;
+  }
+  .mono { font-family: var(--font-mono); font-size: 12px; font-weight: 500; }
+
+  /* App shell */
+  .app-shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 100vh;
   }
 
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+  }
+  .sidebar-brand img { height: 36px; width: auto; }
+  .sidebar-nav {
+    flex: 1;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: background 150ms var(--ease-out), color 150ms var(--ease-out);
+  }
+  .sidebar-nav a:hover {
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--color-text-primary);
+  }
+  .sidebar-nav a.active {
+    background: rgba(79, 70, 229, 0.15);
+    color: var(--color-primary-light);
+  }
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-border);
+    flex-shrink: 0;
+  }
+  .sidebar-nav a.active .nav-dot { background: var(--color-primary); }
+  .sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Main */
+  .main-wrap {
+    grid-column: 2;
+    min-width: 0;
+  }
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .topbar-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+  .topbar-title strong { color: var(--color-text-primary); font-weight: 600; }
+  .topbar-actions { display: flex; align-items: center; gap: var(--spacing-sm); }
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    color: var(--color-text-primary);
+  }
+  .menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    margin: 4px 0;
+  }
+
+  main { padding: 0 var(--spacing-lg) var(--spacing-xl); }
+  .content-inner { max-width: var(--max-content); margin: 0 auto; }
+
+  /* Buttons */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 14px 24px;
-    font-family: "DM Sans", sans-serif;
-    font-size: 11px;
+    gap: var(--spacing-sm);
+    padding: 10px 18px;
+    font-family: var(--font-body);
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
     text-decoration: none;
+    border-radius: 8px;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition: background 150ms var(--ease-out), color 150ms var(--ease-out), border-color 150ms var(--ease-out), transform 100ms var(--ease-out), box-shadow 150ms var(--ease-out);
   }
-  .btn-primary { background: var(--white); color: var(--black); border-color: var(--white); }
-  .btn-primary:hover { background: #e8e6e1; border-color: #e8e6e1; }
-  .btn-outline { background: transparent; color: var(--white); border-color: var(--border); }
-  .btn-outline:hover { border-color: var(--dimmer); color: var(--white); }
-  .btn-light { background: var(--white); color: var(--black); border-color: var(--white); }
-  .btn-light:hover { background: #e8e6e1; }
-  .btn-ghost { background: transparent; color: var(--dim); border-color: var(--border); }
-  .btn-ghost:hover { color: var(--white); border-color: var(--dimmer); }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+  .btn-primary:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.35);
+    transform: scale(1.02);
+  }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+  }
+  .btn-secondary:hover {
+    background: rgba(51, 65, 85, 0.5);
+    border-color: var(--color-text-secondary);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-color: transparent;
+  }
+  .btn-ghost:hover { color: var(--color-text-primary); background: rgba(51, 65, 85, 0.35); }
+  .btn-sm { padding: 8px 14px; font-size: 13px; }
+  .btn-block { width: 100%; }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: rgba(8, 8, 8, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    transition: box-shadow 0.25s, background 0.25s;
-  }
-  nav.scrolled { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45); background: var(--black); }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px;
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  .logo img { height: 40px; width: auto; display: block; max-width: min(220px, 52vw); }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-ctas { display: flex; align-items: center; gap: 10px; }
-  .nav-ctas .btn { padding: 10px 18px; }
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 1px;
-    background: var(--white);
-  }
-
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 99;
-    background: var(--black);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-  }
-  .mobile-nav.open { display: flex; }
-  .mobile-nav a {
-    font-family: "Playfair Display", serif;
-    font-size: 1.5rem;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .mobile-close {
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    background: none;
-    border: none;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: var(--white);
-  }
-
-  /* HERO */
-  .hero {
-    padding: 140px 0 100px;
-    background: var(--black);
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-  }
-  .hero-logo { margin-bottom: 32px; }
-  .hero-logo img { height: clamp(88px, 16vw, 148px); width: auto; max-width: 100%; }
-  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-  .hero-meta {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--dimmer);
-  }
-
-  /* PHONE MOCK */
-  .hero-visual { display: flex; justify-content: center; }
-  .phone-panel {
-    width: 100%;
-    max-width: 320px;
-    border: 1px solid var(--border-dark);
-    background: var(--black);
-    padding: 24px;
-  }
-  .phone-label {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--dimmer);
-    margin-bottom: 16px;
-  }
-  .phone-session {
-    border: 1px solid var(--border);
-    background: rgba(244, 242, 237, 0.03);
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  .badge-live {
+  /* Badges */
+  .badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--green);
-    border: 1px solid var(--green-border);
-    background: var(--green-dim);
     padding: 4px 10px;
-    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .badge-gradient {
+    background: var(--gradient-badge);
+    color: var(--color-primary-light);
+    border: 1px solid rgba(79, 70, 229, 0.25);
+  }
+  .badge-live {
+    background: var(--gradient-badge);
+    color: var(--color-accent);
+    border: 1px solid rgba(6, 182, 212, 0.35);
+    animation: live-pulse 2.5s ease-in-out infinite;
   }
   .badge-live::before {
     content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2s infinite;
+    background: var(--color-accent);
+    box-shadow: 0 0 8px var(--color-accent);
   }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .phone-session h4 {
-    font-family: "DM Sans", sans-serif;
+  .badge-success {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--color-success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  .badge-warning {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--color-warning);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  @keyframes live-pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(79, 70, 229, 0); }
+    50% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.3); }
+  }
+
+  /* Cards */
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-card);
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out), background 150ms var(--ease-out);
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+    background: var(--color-surface-raised);
+  }
+
+  /* Hero */
+  .hero {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+  .hero-eyebrow { margin-bottom: var(--spacing-md); }
+  .hero h1 { margin-bottom: var(--spacing-md); max-width: 18ch; }
+  .hero .lead { margin-bottom: var(--spacing-lg); }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+  .hero-meta span::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* Dashboard preview */
+  .dashboard-preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  .session-card.pulse-active {
+    animation: live-pulse 2.5s ease-in-out infinite;
+  }
+  .session-card h4 {
+    font-family: var(--font-body);
     font-size: 14px;
-    font-weight: 500;
-    color: var(--white);
-    margin-bottom: 4px;
+    font-weight: 600;
+    margin: var(--spacing-sm) 0 4px;
   }
-  .phone-session p { font-size: 12px; color: var(--dim); }
-  .qr-box {
-    background: var(--white);
-    padding: 16px;
-    margin-bottom: 16px;
-    aspect-ratio: 1;
+  .session-card p { font-size: 13px; color: var(--color-text-secondary); }
+  .qr-panel {
+    background: var(--color-bg);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    aspect-ratio: 1;
+    max-height: 180px;
   }
   .qr-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 2px;
     width: 100%;
-    max-width: 130px;
+    max-width: 120px;
   }
-  .qr-cell { aspect-ratio: 1; }
-  .qr-cell.on { background: var(--black); }
-  .phone-cta {
+  .qr-cell { aspect-ratio: 1; border-radius: 1px; }
+  .qr-cell.on { background: var(--color-primary); }
+  .qr-cell.off { background: var(--color-border); }
+  .checkin-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
     text-align: center;
-    padding: 14px;
-    background: var(--white);
-    color: var(--black);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: transform 100ms var(--ease-out), background 150ms var(--ease-out);
   }
+  .checkin-btn:hover { background: var(--color-primary-light); }
+  .checkin-btn:active { transform: scale(0.97); }
 
-  /* SECTIONS */
-  section { padding: 96px 0; }
-  .section-header { margin-bottom: 56px; max-width: 40rem; }
-  .section-header.center { text-align: center; margin-left: auto; margin-right: auto; }
-  .section-dark {
-    background: var(--black);
-    color: var(--white);
-  }
-  .section-muted { background: var(--off-black); }
-
-  /* STATS */
-  .stats-grid {
+  /* KPI stats */
+  .kpi-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
   }
-  .stat {
-    background: var(--off-black);
-    padding: 32px 24px;
+  .kpi-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--spacing-lg) var(--spacing-md);
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out), box-shadow 200ms var(--ease-out);
   }
-  .stat-num {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 3rem;
-    line-height: 1;
-    margin-bottom: 8px;
-    color: var(--white);
+  .kpi-card.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .stat-label {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--dimmer);
+  .kpi-card:hover { box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+  .kpi-card.visible:hover { transform: translateY(-2px); }
+  .kpi-value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-sm);
   }
+  .kpi-label { font-size: 12px; color: var(--color-text-secondary); font-weight: 500; }
 
-  /* FEATURES &mdash; app-style numbered grid */
+  /* Chart bars (hero accent) */
+  .mini-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 48px;
+    margin-top: var(--spacing-md);
+  }
+  .chart-bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--color-primary-light), var(--color-primary));
+    border-radius: 4px 4px 0 0;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform 300ms var(--ease-out);
+  }
+  .chart-bar.visible { transform: scaleY(1); }
+
+  /* Sections */
+  section { padding: var(--spacing-xl) 0; scroll-margin-top: calc(var(--header-height) + 16px); }
+  .section-head { margin-bottom: var(--spacing-xl); max-width: 40rem; }
+  .section-head.center { text-align: center; margin-left: auto; margin-right: auto; }
+  .section-head .label { margin-bottom: var(--spacing-sm); display: block; }
+  .section-head h2 { margin-bottom: var(--spacing-sm); }
+  .section-head.center .lead { margin-left: auto; margin-right: auto; }
+
   .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    gap: var(--spacing-md);
   }
-  .feature-card {
-    background: var(--off-black);
-    padding: 32px 28px;
-    position: relative;
-    transition: background 0.3s;
-  }
-  .feature-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--green);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s;
-  }
-  .feature-card:hover { background: #1a1a1a; }
-  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-card h3 { margin-bottom: var(--spacing-sm); }
+  .feature-card p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.55; }
   .feature-num {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 2.5rem;
-    line-height: 1;
-    color: rgba(244, 242, 237, 0.1);
-    margin-bottom: 16px;
-  }
-  .feature-card h3 { margin-bottom: 10px; color: var(--white); }
-  .feature-card p {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--dim);
-    line-height: 1.6;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-primary-light);
+    margin-bottom: var(--spacing-md);
   }
 
-  /* STEPS */
   .steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: var(--spacing-lg);
   }
   .step-num {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 3rem;
-    line-height: 1;
-    margin-bottom: 16px;
-    color: var(--white);
-    opacity: 0.25;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-md);
   }
-  .section-dark .step h3 { color: var(--white); margin-bottom: 10px; }
-  .section-dark .step p { color: var(--dim); font-size: 15px; }
+  .step h3 { margin-bottom: var(--spacing-sm); }
+  .step p { font-size: 13px; color: var(--color-text-secondary); }
 
-  /* WHO */
   .who-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    gap: var(--spacing-md);
   }
-  .who-card {
-    background: var(--off-black);
-    padding: 28px;
-    border: 1px solid var(--border);
-    transition: background 0.3s;
-  }
-  .who-card:hover { background: #1a1a1a; }
-  .who-card h3 { color: var(--white); margin-bottom: 8px; }
-  .who-card p { color: var(--dim); font-size: 14px; margin-bottom: 14px; }
-  .who-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .who-card h3 { margin-bottom: var(--spacing-sm); }
+  .who-card p { font-size: 13px; color: var(--color-text-secondary); margin-bottom: var(--spacing-md); }
+  .who-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); }
   .who-tag {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dim);
-    border: 1px solid var(--border);
+    font-size: 12px;
     padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--gradient-badge);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
   }
 
-  /* CONSTRUCTION */
   .split-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
+    gap: var(--spacing-xl);
+    align-items: start;
   }
-  .points { display: flex; flex-direction: column; gap: 20px; margin: 32px 0; }
+  .points { display: flex; flex-direction: column; gap: var(--spacing-md); margin: var(--spacing-lg) 0; }
   .point {
-    display: flex;
-    gap: 16px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: border-color 200ms var(--ease-out);
   }
-  .point:last-child { border-bottom: none; padding-bottom: 0; }
+  .point:hover { border-color: rgba(79, 70, 229, 0.4); }
   .point strong {
     display: block;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
     margin-bottom: 4px;
   }
-  .point p {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--dim);
-  }
-  .point strong { color: var(--white); }
-  .log-panel {
-    border: 1px solid var(--border);
-    padding: 24px;
-    background: var(--off-black);
-  }
-  .log-header {
+  .point p { font-size: 13px; color: var(--color-text-secondary); }
+
+  .log-panel .log-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    margin-bottom: var(--spacing-md);
+    font-size: 12px;
+    color: var(--color-text-secondary);
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
   }
   .log-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--spacing-sm);
     padding: 12px 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--color-border);
     font-size: 14px;
-    color: var(--white);
   }
   .log-row:last-child { border-bottom: none; }
   .log-avatar {
     width: 32px;
     height: 32px;
-    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
-    font-weight: 500;
-    color: var(--dim);
+    font-weight: 600;
+    color: var(--color-text-secondary);
   }
   .log-name { flex: 1; font-weight: 500; }
-  .log-time { font-size: 12px; color: var(--dimmer); }
-  .log-header { color: var(--dim); }
-  .status {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    border: 1px solid;
+  .log-time {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-secondary);
   }
-  .status-in { color: var(--green); border-color: var(--green-border); background: var(--green-dim); }
-  .status-out { color: var(--dim); border-color: var(--border); }
+  .status {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+  .status-in { background: rgba(16, 185, 129, 0.12); color: var(--color-success); }
+  .status-out { background: rgba(148, 163, 184, 0.1); color: var(--color-text-secondary); }
 
-  /* PRICING */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    gap: var(--spacing-md);
   }
-  .price-card {
-    background: var(--off-black);
-    color: var(--white);
-    padding: 28px 24px;
-    display: flex;
-    flex-direction: column;
-  }
+  .price-card { display: flex; flex-direction: column; }
   .price-card.featured {
-    background: #1a1a1a;
-    border: 1px solid var(--green-border);
-    box-shadow: 0 0 0 1px var(--green-dim);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.35), var(--shadow-card);
   }
-  .price-tier {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--dimmer);
-    margin-bottom: 8px;
-  }
-  .price-card.featured .price-tier { color: var(--green); }
-  .price-name { font-family: "Playfair Display", serif; font-size: 1.5rem; margin-bottom: 16px; color: var(--white); }
+  .price-tier { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .price-name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: var(--spacing-md); }
   .price-amount {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 3rem;
-    line-height: 1;
-    margin-bottom: 12px;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: var(--spacing-sm);
   }
-  .price-desc {
-    font-size: 13px;
-    color: var(--dim);
-    margin-bottom: 20px;
-    flex-grow: 0;
-  }
-  .price-card.featured .price-desc { color: var(--dim); }
+  .price-desc { font-size: 13px; color: var(--color-text-secondary); margin-bottom: var(--spacing-md); flex-grow: 0; }
   .price-features {
     list-style: none;
-    margin-bottom: 24px;
+    margin-bottom: var(--spacing-lg);
     flex-grow: 1;
   }
   .price-features li {
     font-size: 13px;
-    padding: 6px 0;
-    padding-left: 18px;
+    padding: 6px 0 6px 18px;
     position: relative;
-    color: var(--dim);
+    color: var(--color-text-secondary);
   }
-  .price-card.featured .price-features li { color: var(--dim); }
   .price-features li::before {
-    content: "\2014";
+    content: "";
     position: absolute;
     left: 0;
-    color: var(--green);
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
   }
-  .price-features li.muted { color: var(--dimmer); }
-  .price-card.featured .price-features li.muted { color: var(--dimmer); }
-  .price-features li.muted::before { color: var(--dimmer); }
-  .popular {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--green);
-    border: 1px solid var(--green-border);
-    background: var(--green-dim);
-    padding: 4px 10px;
-    margin-bottom: 12px;
-    display: inline-block;
-    width: fit-content;
-  }
+  .price-features li.muted { color: #64748b; }
+  .price-features li.muted::before { background: var(--color-border); }
 
-  /* TESTIMONIALS */
   .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .testimonial {
-    background: var(--off-black);
-    border: 1px solid var(--border);
-    padding: 28px;
+    gap: var(--spacing-md);
   }
   .testimonial p {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.15rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--dim);
+    font-size: 14px;
+    color: var(--color-text-secondary);
     line-height: 1.65;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-md);
   }
-  .testimonial-author { font-size: 13px; }
-  .testimonial-author strong { display: block; color: var(--white); font-weight: 500; }
-  .testimonial-author span { color: var(--dimmer); font-size: 12px; }
+  .testimonial-author strong { display: block; font-size: 14px; }
+  .testimonial-author span { font-size: 12px; color: var(--color-text-secondary); }
 
-  /* FAQ */
   .faq-list { max-width: 40rem; margin: 0 auto; }
-  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item { border-bottom: 1px solid var(--color-border); }
   .faq-question {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
-    padding: 22px 0;
+    gap: var(--spacing-md);
+    padding: 18px 0;
     background: none;
     border: none;
     cursor: pointer;
     text-align: left;
-    font-family: "DM Sans", sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
-    color: var(--white);
+    color: var(--color-text-primary);
+    transition: color 150ms var(--ease-out);
   }
+  .faq-question:hover { color: var(--color-primary-light); }
   .faq-chevron {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    transition: transform 0.3s;
-    color: var(--dimmer);
+    color: var(--color-text-secondary);
+    transition: transform 250ms var(--ease-out);
   }
-  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--color-primary-light); }
   .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.3s;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--dim);
-    line-height: 1.7;
+    transition: max-height 300ms var(--ease-out), padding 250ms var(--ease-out);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
   }
-  .faq-item.open .faq-answer { max-height: 280px; padding-bottom: 22px; }
+  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 18px; }
 
-  /* CTA */
-  .cta { text-align: center; padding: 100px 0; }
-  .cta h2 { margin-bottom: 16px; }
-  .cta .lead { margin: 0 auto 36px; }
+  .cta-section {
+    text-align: center;
+    padding: var(--spacing-xl);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(168, 85, 247, 0.08));
+    border: 1px solid rgba(79, 70, 229, 0.25);
+  }
+  .cta-section h2 { margin-bottom: var(--spacing-sm); }
+  .cta-section .lead { margin: 0 auto var(--spacing-lg); }
   .cta-badges {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    margin-top: 40px;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dimmer);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    font-size: 12px;
+    color: var(--color-text-secondary);
   }
 
-  /* FOOTER */
   footer {
-    background: var(--black);
-    color: var(--white);
-    padding: 64px 0 0;
-    border-top: 1px solid var(--border);
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
   }
   .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 48px;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
   }
-  .footer-brand img { height: 52px; width: auto; max-width: 220px; margin-bottom: 16px; display: block; }
-  .footer-brand p { font-size: 14px; color: var(--dim); max-width: 280px; line-height: 1.7; }
+  .footer-brand img { height: 40px; margin-bottom: var(--spacing-md); }
+  .footer-brand p { font-size: 13px; color: var(--color-text-secondary); max-width: 280px; }
   .footer-col h4 {
-    font-size: 10px;
-    letter-spacing: 0.3em;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: var(--dimmer);
-    margin-bottom: 16px;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
   }
   .footer-links { list-style: none; }
   .footer-links a {
     display: block;
     font-size: 13px;
-    color: var(--dim);
+    color: var(--color-text-secondary);
     text-decoration: none;
-    padding: 6px 0;
-    transition: color 0.2s;
+    padding: 5px 0;
+    transition: color 150ms var(--ease-out);
   }
-  .footer-links a:hover { color: var(--white); }
+  .footer-links a:hover { color: var(--color-primary-light); }
   .footer-bottom {
-    border-top: 1px solid var(--border);
-    padding: 24px 0;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
     font-size: 12px;
-    color: var(--dimmer);
+    color: var(--color-text-secondary);
   }
-  .footer-legal { display: flex; gap: 20px; }
-  .footer-legal a { color: var(--dimmer); text-decoration: none; }
-  .footer-legal a:hover { color: var(--white); }
+  .footer-legal { display: flex; gap: var(--spacing-md); }
+  .footer-legal a { color: var(--color-text-secondary); text-decoration: none; }
+  .footer-legal a:hover { color: var(--color-text-primary); }
 
   .fade-up {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    transform: translateY(16px);
+    transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
   }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 199;
+  }
+  .sidebar-overlay.open { display: block; }
+
+  #cookieBanner {
+    position: fixed;
+    bottom: var(--spacing-md);
+    left: calc(var(--sidebar-width) + var(--spacing-md));
+    right: var(--spacing-md);
+    z-index: 9999;
+    max-width: 560px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-lift);
+    transform: translateY(calc(100% + 32px));
+    transition: transform 350ms var(--ease-out);
+  }
+  #cookieBanner.visible { transform: translateY(0); }
+  .cookie-inner { display: flex; flex-direction: column; gap: var(--spacing-md); }
+  .cookie-text strong { display: block; font-size: 14px; margin-bottom: 4px; }
+  .cookie-text p { font-size: 13px; color: var(--color-text-secondary); }
+  .cookie-text a { color: var(--color-primary-light); }
+  .cookie-actions { display: flex; gap: var(--spacing-sm); }
+
   @media (max-width: 1024px) {
-    .hero-grid, .split-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-grid, .split-grid { grid-template-columns: 1fr; }
     .features-grid, .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 768px) {
-    .hero-visual { order: -1; }
-    .nav-links, .nav-ctas { display: none; }
-    .hamburger { display: flex; }
-    .features-grid, .pricing-grid, .testimonials-grid, .who-grid, .steps {
+
+  @media (max-width: 900px) {
+    .app-shell { grid-template-columns: 1fr; }
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 250ms var(--ease-out);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .main-wrap { grid-column: 1; }
+    .menu-toggle { display: block; }
+    .topbar { padding: 0 var(--spacing-md); }
+    main { padding: 0 var(--spacing-md) var(--spacing-xl); }
+    #cookieBanner { left: var(--spacing-md); right: var(--spacing-md); max-width: none; }
+  }
+
+  @media (max-width: 640px) {
+    .features-grid, .pricing-grid, .testimonials-grid, .who-grid, .steps, .kpi-grid {
       grid-template-columns: 1fr;
     }
     .footer-grid { grid-template-columns: 1fr; }
-    section { padding: 72px 0; }
+    .hero-visual { order: -1; }
   }
-
-  /* COOKIE */
-  #cookieBanner {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
-    background: var(--black);
-    border-top: 1px solid var(--border);
-    padding: 20px 24px;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
-  }
-  #cookieBanner.visible { transform: translateY(0); }
-  .cookie-inner {
-    max-width: var(--max); margin: 0 auto;
-    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
-  }
-  .cookie-text { flex: 1; min-width: 240px; }
-  .cookie-text strong { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; color: var(--white); }
-  .cookie-text p { font-size: 13px; color: var(--dim); }
-  .cookie-text a { color: var(--white); }
-  .cookie-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 </style>
 </head>
 <body>
 
-<div class="mobile-nav" id="mobileNav">
-  <button class="mobile-close" onclick="closeMobileNav()">Close</button>
-  <a href="#features" onclick="closeMobileNav()">Features</a>
-  <a href="#how" onclick="closeMobileNav()">How it works</a>
-  <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
-  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
-  <a href="https://app.presenceiq.app/login" class="btn btn-outline">Admin login</a>
-  <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
-</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="/" class="logo" aria-label="PresenceIQ home">
-      <img src="brand/logo-cream.png" alt="PresenceIQ" width="200" height="60">
-    </a>
-    <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#who">Who it's for</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-    <div class="nav-ctas">
-      <a href="https://app.presenceiq.app/login" class="btn btn-outline">Admin login</a>
-      <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
-    </div>
-    <button class="hamburger" onclick="openMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+<aside class="sidebar" id="sidebar" aria-label="Site navigation">
+  <a href="/" class="sidebar-brand" aria-label="PresenceIQ home">
+    <img src="brand/logo-cream.png" alt="" width="140" height="42">
+  </a>
+  <ul class="sidebar-nav">
+    <li><a href="#features" class="nav-link"><span class="nav-dot"></span>Features</a></li>
+    <li><a href="#how" class="nav-link"><span class="nav-dot"></span>How it works</a></li>
+    <li><a href="#who" class="nav-link"><span class="nav-dot"></span>Who it's for</a></li>
+    <li><a href="#pricing" class="nav-link"><span class="nav-dot"></span>Pricing</a></li>
+    <li><a href="#faq" class="nav-link"><span class="nav-dot"></span>FAQ</a></li>
+  </ul>
+  <div class="sidebar-footer">
+    <a href="https://app.presenceiq.app/login" class="btn btn-secondary btn-block btn-sm">Admin login</a>
+    <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-block btn-sm">Get started</a>
   </div>
-</nav>
+</aside>
 
-<section class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-logo">
-          <img src="brand/logo-cream.png" alt="PresenceIQ &mdash; Smart attendance, stronger teams" width="360" height="108">
-        </div>
-        <p class="eyebrow">Attendance, reimagined</p>
-        <h1>Scan. Tap. Done.</h1>
-        <p class="lead">Zero hardware. Two-second check-in. Clear records. Built for churches, schools, workplaces, and construction sites &mdash; the same calm experience as the PresenceIQ app.</p>
-        <div class="hero-ctas">
-          <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started free</a>
-          <a href="#how" class="btn btn-outline">See how it works</a>
-        </div>
-        <p class="hero-meta">No app download &middot; No credit card &middot; UK-hosted & GDPR-ready</p>
+<div class="app-shell">
+  <div class="main-wrap">
+    <header class="topbar">
+      <button class="menu-toggle" type="button" onclick="openSidebar()" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <p class="topbar-title"><strong>PresenceIQ</strong> &mdash; Attendance</p>
+      <div class="topbar-actions">
+        <a href="https://app.presenceiq.app/login" class="btn btn-ghost btn-sm">Login</a>
+        <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-sm">Get started</a>
       </div>
-      <div class="hero-visual">
-        <div class="phone-panel">
-          <p class="phone-label">Member check-in</p>
-          <div class="phone-session">
-            <span class="badge-live">Live session</span>
-            <h4>Sunday Morning Service</h4>
-            <p>Sun 6 Apr &middot; 10:00 AM</p>
+    </header>
+
+    <main>
+      <div class="content-inner">
+
+        <section class="hero" id="top">
+          <div class="kpi-grid" id="kpiGrid">
+            <div class="kpi-card" data-delay="0"><p class="kpi-value">500+</p><p class="kpi-label">Organisations</p></div>
+            <div class="kpi-card" data-delay="30"><p class="kpi-value">2s</p><p class="kpi-label">Average check-in</p></div>
+            <div class="kpi-card" data-delay="60"><p class="kpi-value">98%</p><p class="kpi-label">Admin time saved</p></div>
+            <div class="kpi-card" data-delay="90"><p class="kpi-value">0</p><p class="kpi-label">Hardware required</p></div>
           </div>
-          <div class="qr-box"><div class="qr-grid" id="qrPattern"></div></div>
-          <div class="phone-cta">Mark attendance</div>
-        </div>
+
+          <div class="hero-grid">
+            <div class="fade-up">
+              <p class="label hero-eyebrow">Attendance, reimagined</p>
+              <h1>Scan. Tap. Done.</h1>
+              <p class="lead">Zero hardware. Two-second check-in. Clear records. Built for churches, schools, workplaces, and construction sites &mdash; the same precision-focused experience as the PresenceIQ app.</p>
+              <div class="hero-ctas">
+                <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started free</a>
+                <a href="#how" class="btn btn-secondary">See how it works</a>
+              </div>
+              <div class="hero-meta">
+                <span>No app download</span>
+                <span>No credit card</span>
+                <span>UK-hosted &amp; GDPR-ready</span>
+              </div>
+            </div>
+            <div class="hero-visual fade-up">
+              <div class="dashboard-preview">
+                <div class="card session-card pulse-active">
+                  <span class="badge badge-live">Live session</span>
+                  <h4>Sunday Morning Service</h4>
+                  <p class="mono">SES-2026-0406 &middot; Sun 10:00</p>
+                  <div class="mini-chart" id="heroChart" aria-hidden="true">
+                    <div class="chart-bar" data-h="72"></div>
+                    <div class="chart-bar" data-h="48"></div>
+                    <div class="chart-bar" data-h="88"></div>
+                    <div class="chart-bar" data-h="56"></div>
+                    <div class="chart-bar" data-h="94"></div>
+                  </div>
+                </div>
+                <div class="card">
+                  <p class="label" style="margin-bottom:12px;">Member check-in</p>
+                  <div class="qr-panel"><div class="qr-grid" id="qrPattern"></div></div>
+                  <button type="button" class="checkin-btn">Mark attendance</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features">
+          <div class="section-head fade-up">
+            <span class="label">Product</span>
+            <h2>Everything you need</h2>
+            <p class="lead">A focused toolkit for admins who need clarity and speed, and members who want zero friction.</p>
+          </div>
+          <div class="features-grid">
+            <article class="card feature-card fade-up"><p class="feature-num">01</p><h3>Zero hardware</h3><p>Attendees scan with any phone camera. No scanners, no kiosks.</p></article>
+            <article class="card feature-card fade-up"><p class="feature-num">02</p><h3>Two second check-in</h3><p>Scan the QR, tap once. No login wall on the door.</p></article>
+            <article class="card feature-card fade-up"><p class="feature-num">03</p><h3>Clear records</h3><p>Sessions, departments, and attendance in one calm dashboard.</p></article>
+            <article class="card feature-card fade-up"><p class="feature-num">04</p><h3>Session windows</h3><p>QR opens and closes on your schedule, then archives on its own.</p></article>
+            <article class="card feature-card fade-up"><p class="feature-num">05</p><h3>Built for teams</h3><p>Workplace mode and member flows stay separate and private.</p></article>
+            <article class="card feature-card fade-up"><p class="feature-num">06</p><h3>Follow up</h3><p>Message templates for thanks and gentle nudges after sessions.</p></article>
+          </div>
+        </section>
+
+        <section id="how">
+          <div class="section-head fade-up">
+            <span class="label">How it works</span>
+            <h2>Three steps. Seconds flat.</h2>
+            <p class="lead">From setup to your first attendance report &mdash; no technical knowledge required.</p>
+          </div>
+          <div class="steps">
+            <div class="card step fade-up"><p class="step-num">01</p><h3>Create your session</h3><p>Set your programme, schedule, and QR window. Recurring weekly sessions included.</p></div>
+            <div class="card step fade-up"><p class="step-num">02</p><h3>Members scan &amp; tap</h3><p>Personal links by email. Return visitors get one-tap check-in via device recognition.</p></div>
+            <div class="card step fade-up"><p class="step-num">03</p><h3>Reports &amp; follow-ups</h3><p>Thank-you emails to attendees. Caring messages to absentees &mdash; automated and customisable.</p></div>
+          </div>
+        </section>
+
+        <section id="who">
+          <div class="section-head fade-up">
+            <span class="label">Who it's for</span>
+            <h2>Built for organisations that show up</h2>
+          </div>
+          <div class="who-grid">
+            <div class="card who-card fade-up"><h3>Churches &amp; faith groups</h3><p>Track services and midweek groups. Automated pastoral follow-ups.</p><div class="who-tags"><span class="who-tag">Services</span><span class="who-tag">Youth</span></div></div>
+            <div class="card who-card fade-up"><h3>Schools &amp; education</h3><p>Replace paper registers. Clubs, classes, and events in one system.</p><div class="who-tags"><span class="who-tag">Clubs</span><span class="who-tag">Classes</span></div></div>
+            <div class="card who-card fade-up"><h3>Workplaces &amp; SMEs</h3><p>Check in and out at the door. Clean timesheets, no app install.</p><div class="who-tags"><span class="who-tag">Check-in/out</span><span class="who-tag">Timesheets</span></div></div>
+            <div class="card who-card fade-up"><h3>Construction sites</h3><p>Timestamped gate logs for UK H&amp;S compliance. No hardware on site.</p><div class="who-tags"><span class="who-tag">Site logs</span><span class="who-tag">H&amp;S</span></div></div>
+          </div>
+        </section>
+
+        <section>
+          <div class="split-grid">
+            <div class="fade-up">
+              <span class="label">Construction compliance</span>
+              <h2 style="margin:12px 0;">Built for construction sites too</h2>
+              <p class="lead">UK health and safety law requires attendance logs on every site. One scan at the gate &mdash; logged, timestamped, compliant.</p>
+              <div class="points">
+                <div class="point"><strong>Gate check-in &amp; out</strong><p>Workers scan on arrival and departure for a complete on-site record.</p></div>
+                <div class="point"><strong>H&amp;S compliant logs</strong><p>Exportable records ready for HSE &mdash; CDM obligations covered.</p></div>
+                <div class="point"><strong>No infrastructure</strong><p>A printed QR at the gate is all you need. Workers use their own phones.</p></div>
+              </div>
+              <a href="https://app.presenceiq.app/register" class="btn btn-primary">Set up your site</a>
+            </div>
+            <div class="card log-panel fade-up">
+              <div class="log-header"><span>Site log &mdash; today</span><span class="badge badge-live">Live</span></div>
+              <div class="log-row"><div class="log-avatar">JO</div><span class="log-name">James Okafor</span><span class="log-time">07:42</span><span class="status status-in">In</span></div>
+              <div class="log-row"><div class="log-avatar">SM</div><span class="log-name">Sarah Mensah</span><span class="log-time">07:51</span><span class="status status-in">In</span></div>
+              <div class="log-row"><div class="log-avatar">DP</div><span class="log-name">David Parrish</span><span class="log-time">08:04</span><span class="status status-in">In</span></div>
+              <div class="log-row"><div class="log-avatar">AN</div><span class="log-name">Amara Nwosu</span><span class="log-time">12:30</span><span class="status status-out">Out</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing">
+          <div class="section-head center fade-up">
+            <span class="label">Pricing</span>
+            <h2>Free to start. Simple to scale.</h2>
+            <p class="lead">No contracts. Upgrade, downgrade, or cancel anytime.</p>
+          </div>
+          <div class="pricing-grid">
+            <div class="card price-card fade-up">
+              <p class="price-tier">Free</p>
+              <p class="price-name">Free</p>
+              <p class="price-amount">&pound;0</p>
+              <p class="price-desc">For small groups getting started.</p>
+              <ul class="price-features">
+                <li>1 organisation</li>
+                <li>Up to 50 members</li>
+                <li>QR attendance</li>
+                <li>Email follow-ups</li>
+                <li class="muted">Analytics dashboard</li>
+              </ul>
+              <a href="https://app.presenceiq.app/register" class="btn btn-secondary btn-block">Get started</a>
+            </div>
+            <div class="card price-card fade-up">
+              <p class="price-tier">Starter</p>
+              <p class="price-name">Starter</p>
+              <p class="price-amount">&pound;9</p>
+              <p class="price-desc">Analytics, exports, and templates.</p>
+              <ul class="price-features">
+                <li>Up to 150 members</li>
+                <li>Analytics dashboard</li>
+                <li>Custom email templates</li>
+                <li>CSV export</li>
+              </ul>
+              <a href="https://app.presenceiq.app/register" class="btn btn-secondary btn-block">Start for &pound;9/mo</a>
+            </div>
+            <div class="card price-card featured fade-up">
+              <span class="badge badge-gradient" style="margin-bottom:12px;width:fit-content;">Most popular</span>
+              <p class="price-tier">Growth</p>
+              <p class="price-name">Growth</p>
+              <p class="price-amount">&pound;29</p>
+              <p class="price-desc">The complete solution for active organisations.</p>
+              <ul class="price-features">
+                <li>Up to 500 members</li>
+                <li>SMS notifications</li>
+                <li>SME check-in / check-out</li>
+                <li>Recurring sessions</li>
+              </ul>
+              <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-block">Start growth plan</a>
+            </div>
+            <div class="card price-card fade-up">
+              <p class="price-tier">Pro</p>
+              <p class="price-name">Pro</p>
+              <p class="price-amount">&pound;79</p>
+              <p class="price-desc">Unlimited scale and white-label branding.</p>
+              <ul class="price-features">
+                <li>Unlimited members</li>
+                <li>White-label branding</li>
+                <li>Custom domain</li>
+                <li>Priority support</li>
+              </ul>
+              <a href="https://app.presenceiq.app/register" class="btn btn-secondary btn-block">Contact sales</a>
+            </div>
+          </div>
+          <p style="text-align:center;margin-top:24px;font-size:12px;color:var(--color-text-secondary);">14-day trial on paid plans. No credit card required on Free.</p>
+        </section>
+
+        <section>
+          <div class="section-head center fade-up">
+            <span class="label">Testimonials</span>
+            <h2>Loved across the UK</h2>
+          </div>
+          <div class="testimonials-grid">
+            <blockquote class="card testimonial fade-up"><p>&ldquo;Check-in is done before the sermon ends. Follow-up emails have strengthened our pastoral care.&rdquo;</p><footer class="testimonial-author"><strong>Pastor Oluwaseun Adeyemi</strong><span>Restoration Chapel, Birmingham</span></footer></blockquote>
+            <blockquote class="card testimonial fade-up"><p>&ldquo;Older members tap the same link every week. No scanning, no passwords.&rdquo;</p><footer class="testimonial-author"><strong>Rachel Hughes</strong><span>Northfield Academy, Sheffield</span></footer></blockquote>
+            <blockquote class="card testimonial fade-up"><p>&ldquo;Exportable reports helped us secure two new grants.&rdquo;</p><footer class="testimonial-author"><strong>Grace Nwachukwu</strong><span>Arise Community Trust, London</span></footer></blockquote>
+          </div>
+        </section>
+
+        <section id="faq">
+          <div class="section-head center fade-up">
+            <span class="label">FAQ</span>
+            <h2>Your questions, answered</h2>
+          </div>
+          <div class="faq-list">
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members use a permanent personal link by email. Return visitors can check in with one tap via device recognition.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How does construction site check-in work?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Workers scan at the gate on arrival and departure. You get timestamped, exportable logs for UK H&amp;S compliance.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. UK-hosted data, encryption in transit and at rest, and strict tenant isolation with row-level security.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Can I try before paying?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">The Free plan is free forever. Paid plans include a 14-day trial with no lock-in.</div></div>
+          </div>
+        </section>
+
+        <section>
+          <div class="cta-section fade-up">
+            <span class="label">Ready?</span>
+            <h2 style="margin:12px 0 8px;">Join organisations already using PresenceIQ</h2>
+            <p class="lead">Set up your first session in under ten minutes.</p>
+            <div class="hero-ctas" style="justify-content:center;">
+              <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started free</a>
+              <a href="https://app.presenceiq.app/login" class="btn btn-secondary">Admin login</a>
+            </div>
+            <div class="cta-badges">
+              <span>Free plan available</span>
+              <span>No credit card</span>
+              <span>Cancel anytime</span>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <img src="brand/logo-cream.png" alt="PresenceIQ" width="160" height="48">
+              <p>Smart attendance for churches, schools, workplaces, and construction sites.</p>
+            </div>
+            <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+            <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="mailto:hello@presenceiq.app">Contact</a></li></ul></div>
+            <div class="footer-col"><h4>App</h4><ul class="footer-links"><li><a href="https://app.presenceiq.app/register">Register</a></li><li><a href="https://app.presenceiq.app/login">Admin login</a></li></ul></div>
+          </div>
+          <div class="footer-bottom">
+            <span>&copy; 2026 PresenceIQ. All rights reserved.</span>
+            <div class="footer-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+          </div>
+        </footer>
+
       </div>
-    </div>
+    </main>
   </div>
-</section>
-
-<section class="section-dark section-muted" style="padding: 64px 0;">
-  <div class="container">
-    <div class="stats-grid fade-up">
-      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Organisations</div></div>
-      <div class="stat"><div class="stat-num">2s</div><div class="stat-label">Average check-in</div></div>
-      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Admin time saved</div></div>
-      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Hardware required</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="features" class="section-dark">
-  <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow">Product</p>
-      <h2>Everything you need</h2>
-      <p class="lead">The same focused toolkit you see in the app &mdash; built for admins who want calm control, and members who want zero friction.</p>
-    </div>
-    <div class="features-grid">
-      <article class="feature-card fade-up"><p class="feature-num">01</p><h3>Zero hardware</h3><p>Attendees scan with any phone camera. No scanners, no kiosks.</p></article>
-      <article class="feature-card fade-up"><p class="feature-num">02</p><h3>Two second check-in</h3><p>Scan the QR, tap once. No login wall on the door.</p></article>
-      <article class="feature-card fade-up"><p class="feature-num">03</p><h3>Clear records</h3><p>Sessions, departments, and attendance in one calm dashboard.</p></article>
-      <article class="feature-card fade-up"><p class="feature-num">04</p><h3>Session windows</h3><p>QR opens and closes on your schedule, then archives on its own.</p></article>
-      <article class="feature-card fade-up"><p class="feature-num">05</p><h3>Built for teams</h3><p>Workplace mode and member flows stay separate and private.</p></article>
-      <article class="feature-card fade-up"><p class="feature-num">06</p><h3>Follow up</h3><p>Message templates for thanks and gentle nudges after sessions.</p></article>
-    </div>
-  </div>
-</section>
-
-<section id="how" class="section-dark">
-  <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow">How it works</p>
-      <h2>Three steps. Seconds flat.</h2>
-      <p class="lead">From setup to your first attendance report &mdash; no technical knowledge required.</p>
-    </div>
-    <div class="steps">
-      <div class="step fade-up"><p class="step-num">01</p><h3>Create your session</h3><p>Set your programme, schedule, and QR window. Recurring weekly sessions included.</p></div>
-      <div class="step fade-up"><p class="step-num">02</p><h3>Members scan & tap</h3><p>Personal links by email. Return visitors get one-tap check-in via device recognition.</p></div>
-      <div class="step fade-up"><p class="step-num">03</p><h3>Reports & follow-ups</h3><p>Thank-you emails to attendees. Caring messages to absentees &mdash; automated and customisable.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="who" class="section-dark" style="padding-top: 0;">
-  <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow">Who it's for</p>
-      <h2>Built for organisations that show up</h2>
-    </div>
-    <div class="who-grid">
-      <div class="who-card fade-up"><h3>Churches & faith groups</h3><p>Track services and midweek groups. Automated pastoral follow-ups.</p><div class="who-tags"><span class="who-tag">Services</span><span class="who-tag">Youth</span></div></div>
-      <div class="who-card fade-up"><h3>Schools & education</h3><p>Replace paper registers. Clubs, classes, and events in one system.</p><div class="who-tags"><span class="who-tag">Clubs</span><span class="who-tag">Classes</span></div></div>
-      <div class="who-card fade-up"><h3>Workplaces & SMEs</h3><p>Check in and out at the door. Clean timesheets, no app install.</p><div class="who-tags"><span class="who-tag">Check-in/out</span><span class="who-tag">Timesheets</span></div></div>
-      <div class="who-card fade-up"><h3>Construction sites</h3><p>Timestamped gate logs for UK H&S compliance. No hardware on site.</p><div class="who-tags"><span class="who-tag">Site logs</span><span class="who-tag">H&S</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section-dark">
-  <div class="container">
-    <div class="split-grid">
-      <div class="fade-up">
-        <p class="eyebrow">Construction compliance</p>
-        <h2>Built for construction sites too</h2>
-        <p class="lead">UK health and safety law requires attendance logs on every site. One scan at the gate &mdash; logged, timestamped, compliant.</p>
-        <div class="points">
-          <div class="point"><div><strong>Gate check-in & out</strong><p>Workers scan on arrival and departure for a complete on-site record.</p></div></div>
-          <div class="point"><div><strong>H&S compliant logs</strong><p>Exportable records ready for HSE &mdash; CDM obligations covered.</p></div></div>
-          <div class="point"><div><strong>No infrastructure</strong><p>A printed QR at the gate is all you need. Workers use their own phones.</p></div></div>
-        </div>
-        <a href="https://app.presenceiq.app/register" class="btn btn-primary">Set up your site</a>
-      </div>
-      <div class="log-panel fade-up">
-        <div class="log-header"><span>Site log &mdash; today</span><span class="badge-live">Live</span></div>
-        <div class="log-row"><div class="log-avatar">JO</div><span class="log-name">James Okafor</span><span class="log-time">07:42</span><span class="status status-in">In</span></div>
-        <div class="log-row"><div class="log-avatar">SM</div><span class="log-name">Sarah Mensah</span><span class="log-time">07:51</span><span class="status status-in">In</span></div>
-        <div class="log-row"><div class="log-avatar">DP</div><span class="log-name">David Parrish</span><span class="log-time">08:04</span><span class="status status-in">In</span></div>
-        <div class="log-row"><div class="log-avatar">AN</div><span class="log-name">Amara Nwosu</span><span class="log-time">12:30</span><span class="status status-out">Out</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="pricing" class="section-dark">
-  <div class="container">
-    <div class="section-header center fade-up">
-      <p class="eyebrow">Pricing</p>
-      <h2>Free to start. Simple to scale.</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto;">No contracts. Upgrade, downgrade, or cancel anytime.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="price-card fade-up">
-        <p class="price-tier">Free</p>
-        <p class="price-name">Free</p>
-        <p class="price-amount">&pound;0</p>
-        <p class="price-desc">For small groups getting started.</p>
-        <ul class="price-features">
-          <li>1 organisation</li>
-          <li>Up to 50 members</li>
-          <li>QR attendance</li>
-          <li>Email follow-ups</li>
-          <li class="muted">Analytics dashboard</li>
-        </ul>
-        <a href="https://app.presenceiq.app/register" class="btn btn-outline" style="width:100%">Get started</a>
-      </div>
-      <div class="price-card fade-up">
-        <p class="price-tier">Starter</p>
-        <p class="price-name">Starter</p>
-        <p class="price-amount">&pound;9</p>
-        <p class="price-desc">Analytics, exports, and templates.</p>
-        <ul class="price-features">
-          <li>Up to 150 members</li>
-          <li>Analytics dashboard</li>
-          <li>Custom email templates</li>
-          <li>CSV export</li>
-        </ul>
-        <a href="https://app.presenceiq.app/register" class="btn btn-outline" style="width:100%">Start for &pound;9/mo</a>
-      </div>
-      <div class="price-card featured fade-up">
-        <span class="popular">Most popular</span>
-        <p class="price-tier">Growth</p>
-        <p class="price-name">Growth</p>
-        <p class="price-amount">&pound;29</p>
-        <p class="price-desc">The complete solution for active organisations.</p>
-        <ul class="price-features">
-          <li>Up to 500 members</li>
-          <li>SMS notifications</li>
-          <li>SME check-in / check-out</li>
-          <li>Recurring sessions</li>
-        </ul>
-        <a href="https://app.presenceiq.app/register" class="btn btn-light" style="width:100%">Start growth plan</a>
-      </div>
-      <div class="price-card fade-up">
-        <p class="price-tier">Pro</p>
-        <p class="price-name">Pro</p>
-        <p class="price-amount">&pound;79</p>
-        <p class="price-desc">Unlimited scale and white-label branding.</p>
-        <ul class="price-features">
-          <li>Unlimited members</li>
-          <li>White-label branding</li>
-          <li>Custom domain</li>
-          <li>Priority support</li>
-        </ul>
-        <a href="https://app.presenceiq.app/register" class="btn btn-outline" style="width:100%">Contact sales</a>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:28px;font-size:12px;color:var(--dimmer);">14-day trial on paid plans. No credit card required on Free.</p>
-  </div>
-</section>
-
-<section class="section-dark">
-  <div class="container">
-    <div class="section-header center fade-up">
-      <p class="eyebrow">Testimonials</p>
-      <h2>Loved across the UK</h2>
-    </div>
-    <div class="testimonials-grid">
-      <blockquote class="testimonial fade-up"><p>&ldquo;Check-in is done before the sermon ends. Follow-up emails have strengthened our pastoral care.&rdquo;</p><footer class="testimonial-author"><strong>Pastor Oluwaseun Adeyemi</strong><span>Restoration Chapel, Birmingham</span></footer></blockquote>
-      <blockquote class="testimonial fade-up"><p>&ldquo;Older members tap the same link every week. No scanning, no passwords.&rdquo;</p><footer class="testimonial-author"><strong>Rachel Hughes</strong><span>Northfield Academy, Sheffield</span></footer></blockquote>
-      <blockquote class="testimonial fade-up"><p>&ldquo;Exportable reports helped us secure two new grants.&rdquo;</p><footer class="testimonial-author"><strong>Grace Nwachukwu</strong><span>Arise Community Trust, London</span></footer></blockquote>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="section-dark">
-  <div class="container">
-    <div class="section-header center fade-up">
-      <p class="eyebrow">FAQ</p>
-      <h2>Your questions, answered</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members use a permanent personal link by email. Return visitors can check in with one tap via device recognition.</div></div>
-      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How does construction site check-in work?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Workers scan at the gate on arrival and departure. You get timestamped, exportable logs for UK H&amp;S compliance.</div></div>
-      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. UK-hosted data, encryption in transit and at rest, and strict tenant isolation with row-level security.</div></div>
-      <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Can I try before paying?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">The Free plan is free forever. Paid plans include a 14-day trial with no lock-in.</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section-dark cta">
-  <div class="container fade-up">
-    <p class="eyebrow">Ready?</p>
-    <h2>Join organisations already using PresenceIQ</h2>
-    <p class="lead">Set up your first session in under ten minutes.</p>
-    <div class="hero-ctas" style="justify-content:center;">
-      <a href="https://app.presenceiq.app/register" class="btn btn-light">Get started free</a>
-      <a href="https://app.presenceiq.app/login" class="btn btn-ghost">Admin login</a>
-    </div>
-    <div class="cta-badges">
-      <span>Free plan available</span>
-      <span>No credit card</span>
-      <span>Cancel anytime</span>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="brand/logo-cream.png" alt="PresenceIQ" width="200" height="60">
-        <p>Smart attendance for churches, schools, workplaces, and construction sites.</p>
-      </div>
-      <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
-      <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="mailto:hello@presenceiq.app">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>App</h4><ul class="footer-links"><li><a href="https://app.presenceiq.app/register">Register</a></li><li><a href="https://app.presenceiq.app/login">Admin login</a></li></ul></div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 PresenceIQ. All rights reserved.</span>
-      <div class="footer-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
-    </div>
-  </div>
-</footer>
+</div>
 
 <div id="cookieBanner" role="dialog" aria-label="Cookie consent">
   <div class="cookie-inner">
     <div class="cookie-text"><strong>We use cookies</strong><p>Essential cookies keep the site working. <a href="/cookies">Cookie policy</a></p></div>
     <div class="cookie-actions">
-      <button class="btn btn-ghost" type="button" onclick="rejectCookies()">Reject</button>
-      <button class="btn btn-light" type="button" onclick="acceptCookies()">Accept</button>
+      <button class="btn btn-ghost btn-sm" type="button" onclick="rejectCookies()">Reject</button>
+      <button class="btn btn-primary btn-sm" type="button" onclick="acceptCookies()">Accept</button>
     </div>
   </div>
 </div>
@@ -1039,25 +1099,85 @@
 const qr = document.getElementById('qrPattern');
 if (qr) {
   const p = [1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,1,0,1,0,1,1,0,0,1,0,0,1,1,0,1,0,1,0,1,1,0,0,0,0,0,1,1,1,1,1,1,1];
-  qr.innerHTML = p.map(b => '<div class="qr-cell ' + (b ? 'on' : '') + '"></div>').join('');
+  qr.innerHTML = p.map(b => '<div class="qr-cell ' + (b ? 'on' : 'off') + '"></div>').join('');
 }
+
+document.querySelectorAll('.chart-bar').forEach((bar, i) => {
+  const h = bar.dataset.h || '60';
+  bar.style.height = h + '%';
+  setTimeout(() => bar.classList.add('visible'), 400 + i * 30);
+});
+
+const kpiCards = document.querySelectorAll('.kpi-card');
+const kpiObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const delay = parseInt(e.target.dataset.delay || '0', 10);
+      setTimeout(() => e.target.classList.add('visible'), delay);
+      kpiObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+kpiCards.forEach(c => kpiObserver.observe(c));
+
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const open = item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
   if (!open) item.classList.add('open');
 }
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow = 'hidden'; }
-function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow = ''; }
-function acceptCookies() { localStorage.setItem('pqi_cookies', '1'); document.getElementById('cookieBanner').classList.remove('visible'); }
-function rejectCookies() { localStorage.setItem('pqi_cookies', '0'); document.getElementById('cookieBanner').classList.remove('visible'); }
-window.addEventListener('DOMContentLoaded', () => { if (!localStorage.getItem('pqi_cookies')) setTimeout(() => document.getElementById('cookieBanner').classList.add('visible'), 600); });
+
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+sections.forEach(s => { if (s.id) sectionObserver.observe(s); });
+
+function openSidebar() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.sidebar-nav a').forEach(a => {
+  a.addEventListener('click', closeSidebar);
+});
+
+function acceptCookies() {
+  localStorage.setItem('pqi_cookies', '1');
+  document.getElementById('cookieBanner').classList.remove('visible');
+}
+function rejectCookies() {
+  localStorage.setItem('pqi_cookies', '0');
+  document.getElementById('cookieBanner').classList.remove('visible');
+}
+window.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.getItem('pqi_cookies')) {
+    setTimeout(() => document.getElementById('cookieBanner').classList.add('visible'), 600);
+  }
+});
 </script>
 </body>
 </html>

@@ -5,8 +5,8 @@
   "description": "QR attendance for churches, schools, workplaces and construction sites.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080808",
-  "theme_color": "#080808",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
   "icons": [
     {
       "src": "/favicon.png",
