@@ -583,49 +583,43 @@
   .status-in { background: rgba(16, 185, 129, 0.12); color: var(--color-success); }
   .status-out { background: rgba(148, 163, 184, 0.1); color: var(--color-text-secondary); }
 
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-md);
+  .access-card-wrap {
+    max-width: 28rem;
+    margin: 0 auto;
   }
-  .price-card { display: flex; flex-direction: column; }
-  .price-card.featured {
+  .access-card {
+    text-align: center;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.35), var(--shadow-card);
   }
-  .price-tier { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .price-name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: var(--spacing-md); }
-  .price-amount {
+  .access-amount {
     font-family: var(--font-display);
     font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+  }
+  .access-desc {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+  }
+  .access-included {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+  .access-included h3 {
+    font-size: 1rem;
     margin-bottom: var(--spacing-sm);
   }
-  .price-desc { font-size: 13px; color: var(--color-text-secondary); margin-bottom: var(--spacing-md); flex-grow: 0; }
-  .price-features {
-    list-style: none;
-    margin-bottom: var(--spacing-lg);
-    flex-grow: 1;
-  }
-  .price-features li {
+  .access-included p {
     font-size: 13px;
-    padding: 6px 0 6px 18px;
-    position: relative;
     color: var(--color-text-secondary);
+    line-height: 1.55;
   }
-  .price-features li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 12px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-primary);
-  }
-  .price-features li.muted { color: #64748b; }
-  .price-features li.muted::before { background: var(--color-border); }
 
   .testimonials-grid {
     display: grid;
@@ -780,7 +774,7 @@
 
   @media (max-width: 1024px) {
     .hero-grid, .split-grid { grid-template-columns: 1fr; }
-    .features-grid, .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-grid, .access-included { grid-template-columns: repeat(2, 1fr); }
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
@@ -800,7 +794,7 @@
   }
 
   @media (max-width: 640px) {
-    .features-grid, .pricing-grid, .testimonials-grid, .who-grid, .steps, .kpi-grid {
+    .features-grid, .access-included, .testimonials-grid, .who-grid, .steps, .kpi-grid {
       grid-template-columns: 1fr;
     }
     .footer-grid { grid-template-columns: 1fr; }
@@ -820,7 +814,7 @@
     <li><a href="#features" class="nav-link"><span class="nav-dot"></span>Features</a></li>
     <li><a href="#how" class="nav-link"><span class="nav-dot"></span>How it works</a></li>
     <li><a href="#who" class="nav-link"><span class="nav-dot"></span>Who it's for</a></li>
-    <li><a href="#pricing" class="nav-link"><span class="nav-dot"></span>Pricing</a></li>
+    <li><a href="#access" class="nav-link"><span class="nav-dot"></span>Access</a></li>
     <li><a href="#faq" class="nav-link"><span class="nav-dot"></span>FAQ</a></li>
   </ul>
   <div class="sidebar-footer">
@@ -859,7 +853,7 @@
               <h1>Scan. Tap. Done.</h1>
               <p class="lead">Zero hardware. Two-second check-in. Clear records. Built for churches, schools, workplaces, and construction sites &mdash; the same precision-focused experience as the PresenceIQ app.</p>
               <div class="hero-ctas">
-                <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started free</a>
+                <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
                 <a href="#how" class="btn btn-secondary">See how it works</a>
               </div>
               <div class="hero-meta">
@@ -957,69 +951,25 @@
           </div>
         </section>
 
-        <section id="pricing">
+        <section id="access">
           <div class="section-head center fade-up">
-            <span class="label">Pricing</span>
-            <h2>Free to start. Simple to scale.</h2>
-            <p class="lead">No contracts. Upgrade, downgrade, or cancel anytime.</p>
+            <span class="label">Access</span>
+            <h2>Free to use. Full features included.</h2>
+            <p class="lead">PresenceIQ is free while we grow with early organisations. Create an account and start tracking attendance in minutes.</p>
           </div>
-          <div class="pricing-grid">
-            <div class="card price-card fade-up">
-              <p class="price-tier">Free</p>
-              <p class="price-name">Free</p>
-              <p class="price-amount">&pound;0</p>
-              <p class="price-desc">For small groups getting started.</p>
-              <ul class="price-features">
-                <li>1 organisation</li>
-                <li>Up to 50 members</li>
-                <li>QR attendance</li>
-                <li>Email follow-ups</li>
-                <li class="muted">Analytics dashboard</li>
-              </ul>
-              <a href="https://app.presenceiq.app/register" class="btn btn-secondary btn-block">Get started</a>
-            </div>
-            <div class="card price-card fade-up">
-              <p class="price-tier">Starter</p>
-              <p class="price-name">Starter</p>
-              <p class="price-amount">&pound;9</p>
-              <p class="price-desc">Analytics, exports, and templates.</p>
-              <ul class="price-features">
-                <li>Up to 150 members</li>
-                <li>Analytics dashboard</li>
-                <li>Custom email templates</li>
-                <li>CSV export</li>
-              </ul>
-              <a href="https://app.presenceiq.app/register" class="btn btn-secondary btn-block">Start for &pound;9/mo</a>
-            </div>
-            <div class="card price-card featured fade-up">
-              <span class="badge badge-gradient" style="margin-bottom:12px;width:fit-content;">Most popular</span>
-              <p class="price-tier">Growth</p>
-              <p class="price-name">Growth</p>
-              <p class="price-amount">&pound;29</p>
-              <p class="price-desc">The complete solution for active organisations.</p>
-              <ul class="price-features">
-                <li>Up to 500 members</li>
-                <li>SMS notifications</li>
-                <li>SME check-in / check-out</li>
-                <li>Recurring sessions</li>
-              </ul>
-              <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-block">Start growth plan</a>
-            </div>
-            <div class="card price-card fade-up">
-              <p class="price-tier">Pro</p>
-              <p class="price-name">Pro</p>
-              <p class="price-amount">&pound;79</p>
-              <p class="price-desc">Unlimited scale and white-label branding.</p>
-              <ul class="price-features">
-                <li>Unlimited members</li>
-                <li>White-label branding</li>
-                <li>Custom domain</li>
-                <li>Priority support</li>
-              </ul>
-              <a href="https://app.presenceiq.app/register" class="btn btn-secondary btn-block">Contact sales</a>
+          <div class="access-card-wrap fade-up">
+            <div class="card access-card">
+              <span class="badge badge-gradient" style="width:fit-content;margin:0 auto;">Currently free</span>
+              <p class="access-amount">&pound;0</p>
+              <p class="access-desc">No payment details, no tiers, and no feature gates. Register and use the full product today.</p>
+              <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-block">Create your account</a>
             </div>
           </div>
-          <p style="text-align:center;margin-top:24px;font-size:12px;color:var(--color-text-secondary);">14-day trial on paid plans. No credit card required on Free.</p>
+          <div class="access-included">
+            <article class="card fade-up"><h3>Attendance &amp; sessions</h3><p>QR check-in, session windows, recurring schedules, and exportable reports.</p></article>
+            <article class="card fade-up"><h3>Teams &amp; follow-ups</h3><p>Multiple programmes, email templates, and automated thank-you and absence messages.</p></article>
+            <article class="card fade-up"><h3>Workplace &amp; sites</h3><p>Check-in/out for SMEs and timestamped construction gate logs for UK H&amp;S compliance.</p></article>
+          </div>
         </section>
 
         <section>
@@ -1043,7 +993,7 @@
             <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members use a permanent personal link by email. Return visitors can check in with one tap via device recognition.</div></div>
             <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How does construction site check-in work?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Workers scan at the gate on arrival and departure. You get timestamped, exportable logs for UK H&amp;S compliance.</div></div>
             <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. UK-hosted data, encryption in transit and at rest, and strict tenant isolation with row-level security.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Can I try before paying?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">The Free plan is free forever. Paid plans include a 14-day trial with no lock-in.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How much does PresenceIQ cost?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">PresenceIQ is free to use. Register at app.presenceiq.app and start tracking attendance — no payment details required.</div></div>
           </div>
         </section>
 
@@ -1053,13 +1003,13 @@
             <h2 style="margin:12px 0 8px;">Join organisations already using PresenceIQ</h2>
             <p class="lead">Set up your first session in under ten minutes.</p>
             <div class="hero-ctas" style="justify-content:center;">
-              <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started free</a>
+              <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
               <a href="https://app.presenceiq.app/login" class="btn btn-secondary">Admin login</a>
             </div>
             <div class="cta-badges">
-              <span>Free plan available</span>
+              <span>Free to use</span>
               <span>No credit card</span>
-              <span>Cancel anytime</span>
+              <span>Full features included</span>
             </div>
           </div>
         </section>
@@ -1070,7 +1020,7 @@
               <img src="brand/logo-cream.png" alt="PresenceIQ" width="160" height="48">
               <p>Smart attendance for churches, schools, workplaces, and construction sites.</p>
             </div>
-            <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+            <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#access">Access</a></li></ul></div>
             <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="mailto:hello@presenceiq.app">Contact</a></li></ul></div>
             <div class="footer-col"><h4>App</h4><ul class="footer-links"><li><a href="https://app.presenceiq.app/register">Register</a></li><li><a href="https://app.presenceiq.app/login">Admin login</a></li></ul></div>
           </div>
