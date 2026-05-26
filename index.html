@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PresenceIQ &mdash; Smart attendance, stronger teams</title>
-<meta name="description" content="QR attendance for churches, schools, workplaces and construction sites. Scan. Tap. Done.">
+<meta name="description" content="Smart attendance for churches, schools, businesses and construction sites. Scan, tap, done — no app download, no hardware.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/geist-sans@5.1.0/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.min.css">
 <style>
   :root {
     --color-primary: #4F46E5;
@@ -36,7 +36,7 @@
     --color-text-primary: #F1F5F9;
     --color-text-secondary: #94A3B8;
 
-    --font-display: "Geist Sans", "Geist", system-ui, sans-serif;
+    --font-display: "Geist", "Inter", system-ui, sans-serif;
     --font-body: "Inter", system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
@@ -668,7 +668,7 @@
     color: var(--color-text-secondary);
     line-height: 1.65;
   }
-  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 18px; }
+  .faq-item.open .faq-answer { max-height: 320px; padding-bottom: 18px; }
 
   .cta-section {
     text-align: center;
@@ -818,8 +818,9 @@
     <li><a href="#faq" class="nav-link"><span class="nav-dot"></span>FAQ</a></li>
   </ul>
   <div class="sidebar-footer">
+    <a href="https://app.presenceiq.app/member-login" class="btn btn-ghost btn-block btn-sm">Member login</a>
     <a href="https://app.presenceiq.app/login" class="btn btn-secondary btn-block btn-sm">Admin login</a>
-    <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-block btn-sm">Get started</a>
+    <a href="https://app.presenceiq.app/org/register" class="btn btn-primary btn-block btn-sm">Run an organisation</a>
   </div>
 </aside>
 
@@ -831,8 +832,9 @@
       </button>
       <p class="topbar-title"><strong>PresenceIQ</strong> &mdash; Attendance</p>
       <div class="topbar-actions">
-        <a href="https://app.presenceiq.app/login" class="btn btn-ghost btn-sm">Login</a>
-        <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-sm">Get started</a>
+        <a href="https://app.presenceiq.app/member-login" class="btn btn-ghost btn-sm">Member login</a>
+        <a href="https://app.presenceiq.app/login" class="btn btn-ghost btn-sm">Admin login</a>
+        <a href="https://app.presenceiq.app/org/register" class="btn btn-primary btn-sm">Run an organisation</a>
       </div>
     </header>
 
@@ -840,26 +842,19 @@
       <div class="content-inner">
 
         <section class="hero" id="top">
-          <div class="kpi-grid" id="kpiGrid">
-            <div class="kpi-card" data-delay="0"><p class="kpi-value">500+</p><p class="kpi-label">Organisations</p></div>
-            <div class="kpi-card" data-delay="30"><p class="kpi-value">2s</p><p class="kpi-label">Average check-in</p></div>
-            <div class="kpi-card" data-delay="60"><p class="kpi-value">98%</p><p class="kpi-label">Admin time saved</p></div>
-            <div class="kpi-card" data-delay="90"><p class="kpi-value">0</p><p class="kpi-label">Hardware required</p></div>
-          </div>
-
           <div class="hero-grid">
             <div class="fade-up">
-              <p class="label hero-eyebrow">Attendance, reimagined</p>
-              <h1>Scan. Tap. Done.</h1>
-              <p class="lead">Zero hardware. Two-second check-in. Clear records. Built for churches, schools, workplaces, and construction sites &mdash; the same precision-focused experience as the PresenceIQ app.</p>
+              <p class="label hero-eyebrow">Attendance for real organisations</p>
+              <h1>Attendance that works</h1>
+              <p class="lead">Scan, tap, done. No app download, no hardware, no friction for your members.</p>
               <div class="hero-ctas">
-                <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
-                <a href="#how" class="btn btn-secondary">See how it works</a>
+                <a href="https://app.presenceiq.app/org/register" class="btn btn-primary">Run an organisation</a>
+                <a href="https://app.presenceiq.app/register" class="btn btn-secondary">Join as member</a>
               </div>
               <div class="hero-meta">
                 <span>No app download</span>
-                <span>No credit card</span>
-                <span>UK-hosted &amp; GDPR-ready</span>
+                <span>No subscription fees</span>
+                <span>UK GDPR-ready</span>
               </div>
             </div>
             <div class="hero-visual fade-up">
@@ -909,9 +904,9 @@
             <p class="lead">From setup to your first attendance report &mdash; no technical knowledge required.</p>
           </div>
           <div class="steps">
-            <div class="card step fade-up"><p class="step-num">01</p><h3>Create your session</h3><p>Set your programme, schedule, and QR window. Recurring weekly sessions included.</p></div>
-            <div class="card step fade-up"><p class="step-num">02</p><h3>Members scan &amp; tap</h3><p>Personal links by email. Return visitors get one-tap check-in via device recognition.</p></div>
-            <div class="card step fade-up"><p class="step-num">03</p><h3>Reports &amp; follow-ups</h3><p>Thank-you emails to attendees. Caring messages to absentees &mdash; automated and customisable.</p></div>
+            <div class="card step fade-up"><p class="step-num">01</p><h3>Apply or join</h3><p>Organisations apply at app.presenceiq.app. Members register through a join link, membership QR, or session check-in page from their organisation.</p></div>
+            <div class="card step fade-up"><p class="step-num">02</p><h3>Admin approval</h3><p>Organisation applications are reviewed. Member registrations are approved by your admin before the first check-in.</p></div>
+            <div class="card step fade-up"><p class="step-num">03</p><h3>Scan, tap, follow up</h3><p>Members check in in seconds. Admins get attendance records, messaging templates, and optional follow-ups after each session.</p></div>
           </div>
         </section>
 
@@ -923,7 +918,7 @@
           <div class="who-grid">
             <div class="card who-card fade-up"><h3>Churches &amp; faith groups</h3><p>Track services and midweek groups. Automated pastoral follow-ups.</p><div class="who-tags"><span class="who-tag">Services</span><span class="who-tag">Youth</span></div></div>
             <div class="card who-card fade-up"><h3>Schools &amp; education</h3><p>Replace paper registers. Clubs, classes, and events in one system.</p><div class="who-tags"><span class="who-tag">Clubs</span><span class="who-tag">Classes</span></div></div>
-            <div class="card who-card fade-up"><h3>Workplaces &amp; SMEs</h3><p>Check in and out at the door. Clean timesheets, no app install.</p><div class="who-tags"><span class="who-tag">Check-in/out</span><span class="who-tag">Timesheets</span></div></div>
+            <div class="card who-card fade-up"><h3>Businesses &amp; workplaces</h3><p>Workplace mode for check-in and check-out, work allotment, and daily assignments.</p><div class="who-tags"><span class="who-tag">Workplace mode</span><span class="who-tag">Work allotment</span></div></div>
             <div class="card who-card fade-up"><h3>Construction sites</h3><p>Timestamped gate logs for UK H&amp;S compliance. No hardware on site.</p><div class="who-tags"><span class="who-tag">Site logs</span><span class="who-tag">H&amp;S</span></div></div>
           </div>
         </section>
@@ -939,7 +934,7 @@
                 <div class="point"><strong>H&amp;S compliant logs</strong><p>Exportable records ready for HSE &mdash; CDM obligations covered.</p></div>
                 <div class="point"><strong>No infrastructure</strong><p>A printed QR at the gate is all you need. Workers use their own phones.</p></div>
               </div>
-              <a href="https://app.presenceiq.app/register" class="btn btn-primary">Set up your site</a>
+              <a href="https://app.presenceiq.app/org/register" class="btn btn-primary">Run an organisation</a>
             </div>
             <div class="card log-panel fade-up">
               <div class="log-header"><span>Site log &mdash; today</span><span class="badge badge-live">Live</span></div>
@@ -954,33 +949,21 @@
         <section id="access">
           <div class="section-head center fade-up">
             <span class="label">Access</span>
-            <h2>Free to use. Full features included.</h2>
-            <p class="lead">PresenceIQ is free while we grow with early organisations. Create an account and start tracking attendance in minutes.</p>
+            <h2>Free to use today</h2>
+            <p class="lead">PresenceIQ is currently offered without subscription fees. Apply to run an organisation or join one with a link from your admin.</p>
           </div>
           <div class="access-card-wrap fade-up">
             <div class="card access-card">
-              <span class="badge badge-gradient" style="width:fit-content;margin:0 auto;">Currently free</span>
+              <span class="badge badge-gradient" style="width:fit-content;margin:0 auto;">No subscription fees</span>
               <p class="access-amount">&pound;0</p>
-              <p class="access-desc">No payment details, no tiers, and no feature gates. Register and use the full product today.</p>
-              <a href="https://app.presenceiq.app/register" class="btn btn-primary btn-block">Create your account</a>
+              <p class="access-desc">Use attendance tracking, QR check-in, member management, messaging templates, workplace mode, and work allotment at no cost today.</p>
+              <a href="https://app.presenceiq.app/org/register" class="btn btn-primary btn-block">Apply to run an organisation</a>
             </div>
           </div>
           <div class="access-included">
-            <article class="card fade-up"><h3>Attendance &amp; sessions</h3><p>QR check-in, session windows, recurring schedules, and exportable reports.</p></article>
-            <article class="card fade-up"><h3>Teams &amp; follow-ups</h3><p>Multiple programmes, email templates, and automated thank-you and absence messages.</p></article>
-            <article class="card fade-up"><h3>Workplace &amp; sites</h3><p>Check-in/out for SMEs and timestamped construction gate logs for UK H&amp;S compliance.</p></article>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-head center fade-up">
-            <span class="label">Testimonials</span>
-            <h2>Loved across the UK</h2>
-          </div>
-          <div class="testimonials-grid">
-            <blockquote class="card testimonial fade-up"><p>&ldquo;Check-in is done before the sermon ends. Follow-up emails have strengthened our pastoral care.&rdquo;</p><footer class="testimonial-author"><strong>Pastor Oluwaseun Adeyemi</strong><span>Restoration Chapel, Birmingham</span></footer></blockquote>
-            <blockquote class="card testimonial fade-up"><p>&ldquo;Older members tap the same link every week. No scanning, no passwords.&rdquo;</p><footer class="testimonial-author"><strong>Rachel Hughes</strong><span>Northfield Academy, Sheffield</span></footer></blockquote>
-            <blockquote class="card testimonial fade-up"><p>&ldquo;Exportable reports helped us secure two new grants.&rdquo;</p><footer class="testimonial-author"><strong>Grace Nwachukwu</strong><span>Arise Community Trust, London</span></footer></blockquote>
+            <article class="card fade-up"><h3>Attendance &amp; sessions</h3><p>QR check-in, session windows, departments, and exportable attendance records.</p></article>
+            <article class="card fade-up"><h3>Members &amp; messaging</h3><p>Member approvals, personal links, birthday messages, and custom email templates.</p></article>
+            <article class="card fade-up"><h3>Workplace &amp; payments</h3><p>Check-in/out, work allotment, and optional Stripe payments for department dues or paid events.</p></article>
           </div>
         </section>
 
@@ -990,26 +973,27 @@
             <h2>Your questions, answered</h2>
           </div>
           <div class="faq-list">
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members use a permanent personal link by email. Return visitors can check in with one tap via device recognition.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How does construction site check-in work?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Workers scan at the gate on arrival and departure. You get timestamped, exportable logs for UK H&amp;S compliance.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. UK-hosted data, encryption in transit and at rest, and strict tenant isolation with row-level security.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How much does PresenceIQ cost?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">PresenceIQ is free to use. Register at app.presenceiq.app and start tracking attendance — no payment details required.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How do I run an organisation on PresenceIQ?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Apply at app.presenceiq.app/org/register. Organisation applications are reviewed before approval. Once approved, sign in at app.presenceiq.app/login to set up sessions and members.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How do members register and check in?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Members need a link from their organisation — a join link, membership QR, or session check-in page. After admin approval, they receive a personal link by email for one-tap check-in. Existing members can open their profile at app.presenceiq.app/member-login.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members check in from any phone browser. Essential local storage remembers their member ID for faster return check-ins.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. Organisations are data controllers and J. Ednieds Ltd processes data on their behalf. Data is hosted with Supabase in EU West (Ireland) with encryption in transit and at rest.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How much does PresenceIQ cost?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">PresenceIQ is currently offered without subscription fees. Organisations may optionally collect department dues or paid event fees through Stripe.</div></div>
           </div>
         </section>
 
         <section>
           <div class="cta-section fade-up">
             <span class="label">Ready?</span>
-            <h2 style="margin:12px 0 8px;">Join organisations already using PresenceIQ</h2>
-            <p class="lead">Set up your first session in under ten minutes.</p>
+            <h2 style="margin:12px 0 8px;">Built for communities that care</h2>
+            <p class="lead">Apply to run your organisation or join with a link from your admin.</p>
             <div class="hero-ctas" style="justify-content:center;">
-              <a href="https://app.presenceiq.app/register" class="btn btn-primary">Get started</a>
-              <a href="https://app.presenceiq.app/login" class="btn btn-secondary">Admin login</a>
+              <a href="https://app.presenceiq.app/org/register" class="btn btn-primary">Run an organisation</a>
+              <a href="https://app.presenceiq.app/register" class="btn btn-secondary">Join as member</a>
             </div>
             <div class="cta-badges">
-              <span>Free to use</span>
-              <span>No credit card</span>
-              <span>Full features included</span>
+              <span>No subscription fees</span>
+              <span>Admin approval for members</span>
+              <span>No app download</span>
             </div>
           </div>
         </section>
@@ -1018,15 +1002,15 @@
           <div class="footer-grid">
             <div class="footer-brand">
               <img src="brand/logo-cream.png" alt="PresenceIQ" width="160" height="48">
-              <p>Smart attendance for churches, schools, workplaces, and construction sites.</p>
+              <p>Smart attendance for churches, schools, businesses, and construction sites.</p>
             </div>
             <div class="footer-col"><h4>Product</h4><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#how">How it works</a></li><li><a href="#access">Access</a></li></ul></div>
-            <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="mailto:hello@presenceiq.app">Contact</a></li></ul></div>
-            <div class="footer-col"><h4>App</h4><ul class="footer-links"><li><a href="https://app.presenceiq.app/register">Register</a></li><li><a href="https://app.presenceiq.app/login">Admin login</a></li></ul></div>
+            <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="https://app.presenceiq.app/privacy">Privacy Policy</a></li><li><a href="https://app.presenceiq.app/terms">Terms of Service</a></li><li><a href="https://app.presenceiq.app/dpa">Data Processing Agreement</a></li><li><a href="https://app.presenceiq.app/cookies">Cookies</a></li><li><a href="https://app.presenceiq.app/acceptable-use">Acceptable Use</a></li></ul></div>
+            <div class="footer-col"><h4>App</h4><ul class="footer-links"><li><a href="https://app.presenceiq.app/org/register">Run an organisation</a></li><li><a href="https://app.presenceiq.app/login">Admin login</a></li><li><a href="https://app.presenceiq.app/member-login">Member login</a></li><li><a href="https://app.presenceiq.app/register">Join as member</a></li></ul></div>
           </div>
           <div class="footer-bottom">
-            <span>&copy; 2026 PresenceIQ. All rights reserved.</span>
-            <div class="footer-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+            <span>&copy; 2026 PresenceIQ &middot; J. Ednieds Ltd</span>
+            <div class="footer-legal"><a href="https://app.presenceiq.app/privacy">Privacy</a><a href="https://app.presenceiq.app/terms">Terms</a></div>
           </div>
         </footer>
 
@@ -1037,7 +1021,7 @@
 
 <div id="cookieBanner" role="dialog" aria-label="Cookie consent">
   <div class="cookie-inner">
-    <div class="cookie-text"><strong>We use cookies</strong><p>Essential cookies keep the site working. <a href="/cookies">Cookie policy</a></p></div>
+    <div class="cookie-text"><strong>We use essential storage only</strong><p>Essential cookies and local storage keep sessions and member check-in working. We do not use analytics or advertising cookies. <a href="https://app.presenceiq.app/cookies">Cookie policy</a></p></div>
     <div class="cookie-actions">
       <button class="btn btn-ghost btn-sm" type="button" onclick="rejectCookies()">Reject</button>
       <button class="btn btn-primary btn-sm" type="button" onclick="acceptCookies()">Accept</button>
@@ -1059,16 +1043,18 @@ document.querySelectorAll('.chart-bar').forEach((bar, i) => {
 });
 
 const kpiCards = document.querySelectorAll('.kpi-card');
-const kpiObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const delay = parseInt(e.target.dataset.delay || '0', 10);
-      setTimeout(() => e.target.classList.add('visible'), delay);
-      kpiObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.2 });
-kpiCards.forEach(c => kpiObserver.observe(c));
+if (kpiCards.length) {
+  const kpiObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const delay = parseInt(e.target.dataset.delay || '0', 10);
+        setTimeout(() => e.target.classList.add('visible'), delay);
+        kpiObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  kpiCards.forEach(c => kpiObserver.observe(c));
+}
 
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
