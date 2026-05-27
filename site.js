@@ -13,8 +13,6 @@
 
   function animateChartBars() {
     document.querySelectorAll('.chart-bar').forEach(function (bar, index) {
-      var height = bar.dataset.h || '60';
-      bar.style.height = height + '%';
       setTimeout(function () {
         bar.classList.add('visible');
       }, 400 + index * 30);
@@ -88,13 +86,13 @@
   function openSidebar() {
     document.getElementById('sidebar').classList.add('open');
     document.getElementById('sidebarOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
   }
 
   function closeSidebar() {
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('sidebarOverlay').classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
   }
 
   function setCookiePreference(value) {
