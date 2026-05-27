@@ -804,7 +804,7 @@
 </head>
 <body>
 
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <aside class="sidebar" id="sidebar" aria-label="Site navigation">
   <a href="/" class="sidebar-brand" aria-label="PresenceIQ home">
@@ -827,7 +827,7 @@
 <div class="app-shell">
   <div class="main-wrap">
     <header class="topbar">
-      <button class="menu-toggle" type="button" onclick="openSidebar()" aria-label="Open navigation">
+      <button class="menu-toggle" type="button" aria-label="Open navigation">
         <span></span><span></span><span></span>
       </button>
       <p class="topbar-title"><strong>PresenceIQ</strong> &mdash; Attendance</p>
@@ -973,11 +973,11 @@
             <h2>Your questions, answered</h2>
           </div>
           <div class="faq-list">
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How do I run an organisation on PresenceIQ?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Apply at app.presenceiq.app/org/register. Organisation applications are reviewed before approval. Once approved, sign in at app.presenceiq.app/login to set up sessions and members.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How do members register and check in?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Members need a link from their organisation — a join link, membership QR, or session check-in page. After admin approval, they receive a personal link by email for one-tap check-in. Existing members can open their profile at app.presenceiq.app/member-login.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members check in from any phone browser. Essential local storage remembers their member ID for faster return check-ins.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. Organisations are data controllers and J. Ednieds Ltd processes data on their behalf. Data is hosted with Supabase in EU West (Ireland) with encryption in transit and at rest.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button" onclick="toggleFaq(this)">How much does PresenceIQ cost?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">PresenceIQ is currently offered without subscription fees. Organisations may optionally collect department dues or paid event fees through Stripe.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button">How do I run an organisation on PresenceIQ?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Apply at app.presenceiq.app/org/register. Organisation applications are reviewed before approval. Once approved, sign in at app.presenceiq.app/login to set up sessions and members.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button">How do members register and check in?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Members need a link from their organisation — a join link, membership QR, or session check-in page. After admin approval, they receive a personal link by email for one-tap check-in. Existing members can open their profile at app.presenceiq.app/member-login.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members check in from any phone browser. Essential local storage remembers their member ID for faster return check-ins.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. Organisations are data controllers and J. Ednieds Ltd processes data on their behalf. Data is hosted with Supabase in EU West (Ireland) with encryption in transit and at rest.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button">How much does PresenceIQ cost?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">PresenceIQ is currently offered without subscription fees. Organisations may optionally collect department dues or paid event fees through Stripe.</div></div>
           </div>
         </section>
 
@@ -1023,97 +1023,12 @@
   <div class="cookie-inner">
     <div class="cookie-text"><strong>We use essential storage only</strong><p>Essential cookies and local storage keep sessions and member check-in working. We do not use analytics or advertising cookies. <a href="https://app.presenceiq.app/cookies">Cookie policy</a></p></div>
     <div class="cookie-actions">
-      <button class="btn btn-ghost btn-sm" type="button" onclick="rejectCookies()">Reject</button>
-      <button class="btn btn-primary btn-sm" type="button" onclick="acceptCookies()">Accept</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-cookie-action="0">Reject</button>
+      <button class="btn btn-primary btn-sm" type="button" data-cookie-action="1">Accept</button>
     </div>
   </div>
 </div>
 
-<script>
-const qr = document.getElementById('qrPattern');
-if (qr) {
-  const p = [1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,1,0,1,0,1,1,0,0,1,0,0,1,1,0,1,0,1,0,1,1,0,0,0,0,0,1,1,1,1,1,1,1];
-  qr.innerHTML = p.map(b => '<div class="qr-cell ' + (b ? 'on' : 'off') + '"></div>').join('');
-}
-
-document.querySelectorAll('.chart-bar').forEach((bar, i) => {
-  const h = bar.dataset.h || '60';
-  bar.style.height = h + '%';
-  setTimeout(() => bar.classList.add('visible'), 400 + i * 30);
-});
-
-const kpiCards = document.querySelectorAll('.kpi-card');
-if (kpiCards.length) {
-  const kpiObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const delay = parseInt(e.target.dataset.delay || '0', 10);
-        setTimeout(() => e.target.classList.add('visible'), delay);
-        kpiObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  kpiCards.forEach(c => kpiObserver.observe(c));
-}
-
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!open) item.classList.add('open');
-}
-
-const fadeObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      fadeObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
-
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const id = e.target.id;
-      navLinks.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-      });
-    }
-  });
-}, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-sections.forEach(s => { if (s.id) sectionObserver.observe(s); });
-
-function openSidebar() {
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sidebarOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.querySelectorAll('.sidebar-nav a').forEach(a => {
-  a.addEventListener('click', closeSidebar);
-});
-
-function acceptCookies() {
-  localStorage.setItem('pqi_cookies', '1');
-  document.getElementById('cookieBanner').classList.remove('visible');
-}
-function rejectCookies() {
-  localStorage.setItem('pqi_cookies', '0');
-  document.getElementById('cookieBanner').classList.remove('visible');
-}
-window.addEventListener('DOMContentLoaded', () => {
-  if (!localStorage.getItem('pqi_cookies')) {
-    setTimeout(() => document.getElementById('cookieBanner').classList.add('visible'), 600);
-  }
-});
-</script>
+<script src="/site.js" defer></script>
 </body>
 </html>

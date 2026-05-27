@@ -2,7 +2,7 @@
   "id": "/",
   "name": "PresenceIQ",
   "short_name": "PresenceIQ",
-  "description": "QR attendance for churches, schools, workplaces and construction sites.",
+  "description": "Smart attendance for churches, schools, businesses and construction sites.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0F172A",
