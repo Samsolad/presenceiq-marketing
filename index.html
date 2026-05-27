@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PresenceIQ &mdash; Smart attendance, stronger teams</title>
-<meta name="description" content="Smart attendance for churches, schools, businesses and construction sites. Scan, tap, done — no app download, no hardware.">
+<meta name="description" content="Smart attendance for churches, schools, businesses and construction sites. Scan, tap, done &mdash; no app download, no hardware.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -679,6 +679,11 @@
   }
   .cta-section h2 { margin-bottom: var(--spacing-sm); }
   .cta-section .lead { margin: 0 auto var(--spacing-lg); }
+  .label-checkin { margin-bottom: 12px; }
+  .heading-construction { margin: 12px 0; }
+  .badge-centered { width: fit-content; margin: 0 auto; }
+  .heading-cta { margin: 12px 0 8px; }
+  .hero-ctas-center { justify-content: center; }
   .cta-badges {
     display: flex;
     flex-wrap: wrap;
@@ -872,7 +877,7 @@
                   </div>
                 </div>
                 <div class="card">
-                  <p class="label" style="margin-bottom:12px;">Member check-in</p>
+                  <p class="label label-checkin">Member check-in</p>
                   <div class="qr-panel"><div class="qr-grid" id="qrPattern"></div></div>
                   <button type="button" class="checkin-btn">Mark attendance</button>
                 </div>
@@ -927,7 +932,7 @@
           <div class="split-grid">
             <div class="fade-up">
               <span class="label">Construction compliance</span>
-              <h2 style="margin:12px 0;">Built for construction sites too</h2>
+              <h2 class="heading-construction">Built for construction sites too</h2>
               <p class="lead">UK health and safety law requires attendance logs on every site. One scan at the gate &mdash; logged, timestamped, compliant.</p>
               <div class="points">
                 <div class="point"><strong>Gate check-in &amp; out</strong><p>Workers scan on arrival and departure for a complete on-site record.</p></div>
@@ -954,7 +959,7 @@
           </div>
           <div class="access-card-wrap fade-up">
             <div class="card access-card">
-              <span class="badge badge-gradient" style="width:fit-content;margin:0 auto;">No subscription fees</span>
+              <span class="badge badge-gradient badge-centered">No subscription fees</span>
               <p class="access-amount">&pound;0</p>
               <p class="access-desc">Use attendance tracking, QR check-in, member management, messaging templates, workplace mode, and work allotment at no cost today.</p>
               <a href="https://app.presenceiq.app/org/register" class="btn btn-primary btn-block">Apply to run an organisation</a>
@@ -974,7 +979,7 @@
           </div>
           <div class="faq-list">
             <div class="faq-item"><button class="faq-question" type="button">How do I run an organisation on PresenceIQ?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Apply at app.presenceiq.app/org/register. Organisation applications are reviewed before approval. Once approved, sign in at app.presenceiq.app/login to set up sessions and members.</div></div>
-            <div class="faq-item"><button class="faq-question" type="button">How do members register and check in?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Members need a link from their organisation — a join link, membership QR, or session check-in page. After admin approval, they receive a personal link by email for one-tap check-in. Existing members can open their profile at app.presenceiq.app/member-login.</div></div>
+            <div class="faq-item"><button class="faq-question" type="button">How do members register and check in?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Members need a link from their organisation &mdash; a join link, membership QR, or session check-in page. After admin approval, they receive a personal link by email for one-tap check-in. Existing members can open their profile at app.presenceiq.app/member-login.</div></div>
             <div class="faq-item"><button class="faq-question" type="button">Do members need to download an app?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">No. Members check in from any phone browser. Essential local storage remembers their member ID for faster return check-ins.</div></div>
             <div class="faq-item"><button class="faq-question" type="button">Is my data GDPR compliant?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">Yes. Organisations are data controllers and J. Ednieds Ltd processes data on their behalf. Data is hosted with Supabase in EU West (Ireland) with encryption in transit and at rest.</div></div>
             <div class="faq-item"><button class="faq-question" type="button">How much does PresenceIQ cost?<span class="faq-chevron">&#9662;</span></button><div class="faq-answer">PresenceIQ is currently offered without subscription fees. Organisations may optionally collect department dues or paid event fees through Stripe.</div></div>
@@ -984,9 +989,9 @@
         <section>
           <div class="cta-section fade-up">
             <span class="label">Ready?</span>
-            <h2 style="margin:12px 0 8px;">Built for communities that care</h2>
+            <h2 class="heading-cta">Built for communities that care</h2>
             <p class="lead">Apply to run your organisation or join with a link from your admin.</p>
-            <div class="hero-ctas" style="justify-content:center;">
+            <div class="hero-ctas hero-ctas-center">
               <a href="https://app.presenceiq.app/org/register" class="btn btn-primary">Run an organisation</a>
               <a href="https://app.presenceiq.app/register" class="btn btn-secondary">Join as member</a>
             </div>
